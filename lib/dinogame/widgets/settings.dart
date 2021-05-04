@@ -10,7 +10,7 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
+      width: 350,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -18,7 +18,7 @@ class Settings extends StatelessWidget {
           Text(
             'Settings',
             style: TextStyle(
-              fontSize: 60,
+              fontSize: 50,
               color: Colors.white,
             ),
           ),
