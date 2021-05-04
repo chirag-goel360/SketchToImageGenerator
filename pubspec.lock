@@ -57,6 +57,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.1"
+  camera_deep_ar:
+    dependency: "direct main"
+    description:
+      name: camera_deep_ar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   characters:
     dependency: transitive
     description:
