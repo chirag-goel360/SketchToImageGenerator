@@ -181,6 +181,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  flutter_colorpicker:
+    dependency: "direct dev"
+    description:
+      name: flutter_colorpicker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -379,7 +386,7 @@ packages:
     source: hosted
     version: "4.2.1"
   rxdart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: rxdart
       url: "https://pub.dartlang.org"

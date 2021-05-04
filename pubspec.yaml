@@ -16,6 +16,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cached_network_image: null
+  rxdart: null
   hive: null
   flame: ^0.29.4
   cupertino_icons: ^1.0.2
@@ -31,6 +32,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_colorpicker:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
