@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -24,7 +23,7 @@ class _DrawWorkerState extends State<DrawWorker> {
   Color selectedColor = Colors.black;
   Color pickerColor = Colors.black;
   double strokeWidth = 3.0;
-  List<DrawingPoints> points = List();
+  List<DrawingPoints> points = [];
   bool showBottomList = false;
   double opacity = 1.0;
   StrokeCap strokeCap = (Platform.isAndroid) ? StrokeCap.butt : StrokeCap.round;
@@ -223,7 +222,7 @@ class _DrawWorkerState extends State<DrawWorker> {
   // }
 
   getColorList() {
-    List<Widget> listWidget = List();
+    List<Widget> listWidget = [];
     for(Color color in colors) {
       listWidget.add(
         colorCircle(color),
@@ -249,7 +248,7 @@ class _DrawWorkerState extends State<DrawWorker> {
               ),
             ),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text(
                   'Save',
                 ),

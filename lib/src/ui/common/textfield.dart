@@ -29,7 +29,7 @@ import 'package:humangenerator/src/ui/common/neumorphic/neumorphic.dart';
 /// @param errorMessage
 ///
 
-class ShipsyTextField extends StatelessWidget {
+class ProjectTextField extends StatelessWidget {
   final String placeholder;
   final bool obscureText;
   final bool autoFocus;
@@ -53,7 +53,7 @@ class ShipsyTextField extends StatelessWidget {
   final BoxConstraints suffixIconConstraints;
   final bool clearAllowed;
 
-  const ShipsyTextField({
+  const ProjectTextField({
     Key key,
     @required this.placeholder,
     this.type: FIELD_TYPE.LIGHT,
@@ -71,7 +71,7 @@ class ShipsyTextField extends StatelessWidget {
     this.suffixIcon,
     this.focusNode,
     this.controller,
-    this.margin: ShipsyEdgeInsets.ALL_0,
+    this.margin: ProjectEdgeInsets.ALL_0,
     this.label,
     this.errorMessage,
     this.maxLines: 1,
@@ -82,20 +82,20 @@ class ShipsyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final EdgeInsets contentPadding = (maxLines != null && maxLines > 1)
-        ? ShipsyEdgeInsets.HORIZONTAL_16.add(ShipsyEdgeInsets.VERTICAL_10)
-        : ShipsyEdgeInsets.HORIZONTAL_16;
+        ? ProjectEdgeInsets.HORIZONTAL_16.add(ProjectEdgeInsets.VERTICAL_10)
+        : ProjectEdgeInsets.HORIZONTAL_16;
     Color textColor = this.enabled
         ? _colorMap[type][_colorTypes.textColor]
-        : ShipsyColors.DISABLED_DARK;
+        : ProjectColors.DISABLED_DARK;
     Color color = this.enabled
         ? _colorMap[type][_colorTypes.color]
-        : ShipsyColors.DISABLED_LIGHT;
+        : ProjectColors.DISABLED_LIGHT;
     Color embossColor = this.enabled
         ? _colorMap[type][_colorTypes.embossLightShadowColor]
         : Colors.transparent;
     Color embossDarkColor = _colorMap[type][_colorTypes.embossDarkShadowColor];
     BorderRadius borderRadius =
-        BorderRadius.all(ShipsyBorderRadius.CIRCULAR_16);
+        BorderRadius.all(ProjectBorderRadius.CIRCULAR_16);
     final TextTheme _textTheme = Theme.of(context).textTheme;
     final TextStyle textStyle = _textTheme.bodyText2.copyWith(
       color: textColor,
@@ -103,13 +103,13 @@ class ShipsyTextField extends StatelessWidget {
     final TextStyle labelTextStyle = _textTheme.bodyText1.copyWith(
       color: _colorMap[type][_colorTypes.labelColor],
     );
-    final Widget textField = ShipsyNeumorphic(
+    final Widget textField = ProjectNeumorphic(
       margin: this.label == null ? margin : null,
-      style: ShipsyNeumorphicStyle(
+      style: ProjectNeumorphicStyle(
         boxShape: BOX_SHAPE.ROUND_RECT,
         borderRadius: borderRadius,
-        depth: ShipsyNeumorphicTheme.EMBOSS_DEPTH_3,
-        intensity: ShipsyNeumorphicTheme.INTENSITY_0P95,
+        depth: ProjectNeumorphicTheme.EMBOSS_DEPTH_3,
+        intensity: ProjectNeumorphicTheme.INTENSITY_0P95,
         lightSource: LIGHT_SOURCE.TOP_LEFT,
         color: color,
         shadowLightColorEmboss: embossColor,
@@ -161,7 +161,7 @@ class ShipsyTextField extends StatelessWidget {
     if (label != null) {
       finalWidgets.add(
         Padding(
-          padding: ShipsyEdgeInsets.LEFT_15.add(ShipsyEdgeInsets.BOTTOM_15),
+          padding: ProjectEdgeInsets.LEFT_15.add(ProjectEdgeInsets.BOTTOM_15),
           child: Text(
             label,
             style: labelTextStyle,
@@ -174,11 +174,11 @@ class ShipsyTextField extends StatelessWidget {
 
     if (errorMessage != null) {
       finalWidgets.add(Padding(
-        padding: ShipsyEdgeInsets.LEFT_15.add(ShipsyEdgeInsets.TOP_10),
+        padding: ProjectEdgeInsets.LEFT_15.add(ProjectEdgeInsets.TOP_10),
         child: Text(
           errorMessage,
           style: _textTheme.overline.copyWith(
-            color: ShipsyColors.ERROR_DARK,
+            color: ProjectColors.ERROR_DARK,
           ),
         ),
       ));
@@ -210,21 +210,21 @@ enum _colorTypes {
 
 Map<FIELD_TYPE, Map<_colorTypes, Color>> _colorMap = {
   FIELD_TYPE.LIGHT: {
-    _colorTypes.textColor: ShipsyColors.PRIMARY_DARK,
-    _colorTypes.color: ShipsyColors.DEFAULT,
+    _colorTypes.textColor: ProjectColors.PRIMARY_DARK,
+    _colorTypes.color: ProjectColors.DEFAULT,
     _colorTypes.embossLightShadowColor:
-        ShipsyNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
+        ProjectNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
     _colorTypes.embossDarkShadowColor:
-        ShipsyNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
-    _colorTypes.labelColor: ShipsyColors.SECONDARY_DARK,
+        ProjectNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
+    _colorTypes.labelColor: ProjectColors.SECONDARY_DARK,
   },
   FIELD_TYPE.DARK: {
-    _colorTypes.textColor: ShipsyColors.DEFAULT,
-    _colorTypes.color: ShipsyColors.PRIMARY_DARK,
+    _colorTypes.textColor: ProjectColors.DEFAULT,
+    _colorTypes.color: ProjectColors.PRIMARY_DARK,
     _colorTypes.embossLightShadowColor:
-        ShipsyNeumorphicTheme.LIGHT_SHADOW_DARK_THEME,
+        ProjectNeumorphicTheme.LIGHT_SHADOW_DARK_THEME,
     _colorTypes.embossDarkShadowColor:
-        ShipsyNeumorphicTheme.DARK_SHADOW_DARK_THEME,
-    _colorTypes.labelColor: ShipsyColors.SECONDARY_DARK,
+        ProjectNeumorphicTheme.DARK_SHADOW_DARK_THEME,
+    _colorTypes.labelColor: ProjectColors.SECONDARY_DARK,
   }
 };

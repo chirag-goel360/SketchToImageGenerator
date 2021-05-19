@@ -16,14 +16,14 @@ import 'package:humangenerator/src/ui/common/neumorphic/neumorphic_button.dart';
 /// @params theme
 ///
 
-class ShipsyIconButton extends StatelessWidget {
+class ProjectIconButton extends StatelessWidget {
   final IconData icon;
   final ICON_BUTTON_THEMES theme;
   final void Function() onPressed;
   final bool disabled;
   final bool selected;
 
-  const ShipsyIconButton({
+  const ProjectIconButton({
     Key key,
     @required this.icon,
     @required this.onPressed,
@@ -35,27 +35,27 @@ class ShipsyIconButton extends StatelessWidget {
   Map<_colorMapKeys, Color> _getColorMap() {
     Map<_colorMapKeys, Color> colorMap = theme == ICON_BUTTON_THEMES.LIGHT
         ? {
-            _colorMapKeys.BG: ShipsyColors.DEFAULT,
-            _colorMapKeys.ICON: ShipsyColors.PRIMARY_DARK,
+            _colorMapKeys.BG: ProjectColors.DEFAULT,
+            _colorMapKeys.ICON: ProjectColors.PRIMARY_DARK,
             _colorMapKeys.LIGHT_SHADOW:
-                ShipsyNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
+                ProjectNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
             _colorMapKeys.DARK_SHADOW:
-                ShipsyNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
+                ProjectNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
           }
         : {
-            _colorMapKeys.BG: ShipsyColors.PRIMARY_DARK,
-            _colorMapKeys.ICON: ShipsyColors.DEFAULT,
+            _colorMapKeys.BG: ProjectColors.PRIMARY_DARK,
+            _colorMapKeys.ICON: ProjectColors.DEFAULT,
             _colorMapKeys.LIGHT_SHADOW:
-                ShipsyNeumorphicTheme.LIGHT_SHADOW_DARK_THEME,
+                ProjectNeumorphicTheme.LIGHT_SHADOW_DARK_THEME,
             _colorMapKeys.DARK_SHADOW:
-                ShipsyNeumorphicTheme.DARK_SHADOW_DARK_THEME,
+                ProjectNeumorphicTheme.DARK_SHADOW_DARK_THEME,
           };
     if (disabled) {
-      colorMap[_colorMapKeys.BG] = ShipsyColors.DISABLED_LIGHT;
-      colorMap[_colorMapKeys.ICON] = ShipsyColors.DISABLED_DARK;
+      colorMap[_colorMapKeys.BG] = ProjectColors.DISABLED_LIGHT;
+      colorMap[_colorMapKeys.ICON] = ProjectColors.DISABLED_DARK;
     } else if (selected) {
-      colorMap[_colorMapKeys.BG] = ShipsyColors.PRIMARY_LIGHT;
-      colorMap[_colorMapKeys.ICON] = ShipsyColors.DEFAULT;
+      colorMap[_colorMapKeys.BG] = ProjectColors.PRIMARY_LIGHT;
+      colorMap[_colorMapKeys.ICON] = ProjectColors.DEFAULT;
     }
     return colorMap;
   }
@@ -63,16 +63,16 @@ class ShipsyIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<_colorMapKeys, Color> colorData = _getColorMap();
-    return ShipsyNeumorphicButton(
-      padding: ShipsyEdgeInsets.ALL_10,
-      style: ShipsyNeumorphicStyle(
+    return ProjectNeumorphicButton(
+      padding: ProjectEdgeInsets.ALL_10,
+      style: ProjectNeumorphicStyle(
         boxShape: BOX_SHAPE.ROUND_RECT,
-        borderRadius:BorderRadius.all(ShipsyBorderRadius.CIRCULAR_16) ,
+        borderRadius:BorderRadius.all(ProjectBorderRadius.CIRCULAR_16) ,
         shape: NEUMORPHIC_SHAPE.FLAT,
         depth: selected
-            ? ShipsyNeumorphicTheme.EMBOSS_DEPTH_3
-            : ShipsyNeumorphicTheme.DEPTH_5,
-        intensity: ShipsyNeumorphicTheme.INTENSITY_MAX,
+            ? ProjectNeumorphicTheme.EMBOSS_DEPTH_3
+            : ProjectNeumorphicTheme.DEPTH_5,
+        intensity: ProjectNeumorphicTheme.INTENSITY_MAX,
         color: colorData[_colorMapKeys.BG],
         shadowLightColorEmboss: colorData[_colorMapKeys.LIGHT_SHADOW],
         shadowLightColor: colorData[_colorMapKeys.LIGHT_SHADOW],

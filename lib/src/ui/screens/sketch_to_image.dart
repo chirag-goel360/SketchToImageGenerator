@@ -148,15 +148,15 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ShipsyAppBar(
+            ProjectAppBar(
                 icon: 'assets/module_icons/sketchHuman.png',
                 title: _translate(Strings.SKETCH_TO_IMAGE)),
             Padding(
-              padding: ShipsyEdgeInsets.ALL_10,
+              padding: ProjectEdgeInsets.ALL_10,
               child: Container(
                 height: size.height * 0.41,
                 width: 310,
-                child: ShipsyCard(
+                child: ProjectCard(
                   heading: _translate(Strings.SKETCH_BOARD),
                   headingSuffix: Row(
                     children: [
@@ -171,7 +171,7 @@ class _HomeState extends State<Home> {
                           });
                         },
                       ),
-                      ShipsySizedBoxes.WIDTH_3,
+                      ProjectSizedBoxes.WIDTH_3,
                       GestureDetector(
                         child: Icon(
                           Icons.save,
@@ -181,7 +181,7 @@ class _HomeState extends State<Home> {
                           saveToImage(points);
                         },
                       ),
-                      ShipsySizedBoxes.WIDTH_3,
+                      ProjectSizedBoxes.WIDTH_3,
                       GestureDetector(
                         child: Icon(
                           Icons.camera_alt,
@@ -194,7 +194,7 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   body: Padding(
-                    padding: ShipsyEdgeInsets.TOP_10,
+                    padding: ProjectEdgeInsets.TOP_10,
                     child: Container(
                       width: 256,
                       height: 256,
@@ -257,11 +257,11 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            ShipsySizedBoxes.HEIGHT_5,
+            ProjectSizedBoxes.HEIGHT_5,
             Container(
               height: size.height * 0.38,
               width: 310,
-              child: ShipsyCard(
+              child: ProjectCard(
                 heading: _translate(Strings.OUTPUT_BOARD),
                 body: Container(
                   height: 256,
@@ -286,7 +286,7 @@ class _HomeState extends State<Home> {
               height: size.height,
               child: Column(
                 children: [
-                  ShipsyAppBar(
+                  ProjectAppBar(
                       icon: 'assets/module_icons/sketchHuman.png',
                       title: _translate(Strings.SKETCH_TO_IMAGE)),
                   Expanded(
@@ -297,8 +297,8 @@ class _HomeState extends State<Home> {
                         Container(
                           height: 500,
                           width: 600,
-                          padding: ShipsyEdgeInsets.ALL_10,
-                          child: ShipsyCard(
+                          padding: ProjectEdgeInsets.ALL_10,
+                          child: ProjectCard(
                             tray: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -316,7 +316,7 @@ class _HomeState extends State<Home> {
                               ],
                             ),
                             heading: _translate(Strings.SKETCH_BOARD),
-                            padding: ShipsyEdgeInsets.ALL_10,
+                            padding: ProjectEdgeInsets.ALL_10,
                             // bodyHeight:550,
                             body: Container(
                               width: 256,
@@ -380,14 +380,14 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                         ),
-                        ShipsySizedBoxes.WIDTH_10,
+                        ProjectSizedBoxes.WIDTH_10,
                         Container(
                           height: 500,
                           width: 600,
-                          padding: ShipsyEdgeInsets.ALL_10,
-                          child: ShipsyCard(
+                          padding: ProjectEdgeInsets.ALL_10,
+                          child: ProjectCard(
                             heading: _translate(Strings.OUTPUT_BOARD),
-                            padding: ShipsyEdgeInsets.ALL_10,
+                            padding: ProjectEdgeInsets.ALL_10,
                             bodyHeight: 256,
                             body: Container(
                               height: 256,

@@ -27,19 +27,19 @@ enum NEUMORPHIC_SHAPE{
    FLAT
 }
 
-class ShipsyNeumorphic extends StatelessWidget {
+class ProjectNeumorphic extends StatelessWidget {
   final Widget child;
-  final ShipsyNeumorphicStyle style;
+  final ProjectNeumorphicStyle style;
   final EdgeInsets padding;
   final EdgeInsets margin;
   final TextStyle textStyle;
   final bool drawSurfaceAboveChild;
-  ShipsyNeumorphic(
+  ProjectNeumorphic(
       {Key key,
       @required this.child,
       @required this.style,
-      this.padding: ShipsyEdgeInsets.ALL_0,
-      this.margin: ShipsyEdgeInsets.ALL_0,
+      this.padding: ProjectEdgeInsets.ALL_0,
+      this.margin: ProjectEdgeInsets.ALL_0,
       this.textStyle,
       this.drawSurfaceAboveChild: true,
     })  :super(key: key);
@@ -150,7 +150,7 @@ class ShipsyNeumorphic extends StatelessWidget {
   }
 }
 
-class ShipsyNeumorphicStyle {
+class ProjectNeumorphicStyle {
   final Color color;
   final double depth;
   final double intensity;
@@ -168,7 +168,7 @@ class ShipsyNeumorphicStyle {
   final Color shadowDarkColorEmboss;
   final BorderRadius borderRadius;
 
-  const ShipsyNeumorphicStyle({
+  const ProjectNeumorphicStyle({
     this.shape: NEUMORPHIC_SHAPE.FLAT,
     this.lightSource: LIGHT_SOURCE.TOP_LEFT,
     this.border: const NeumorphicBorder.none(),

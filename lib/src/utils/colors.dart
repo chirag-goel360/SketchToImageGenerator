@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-class ShipsyColors {
+class ProjectColors {
   // will not be instantiated
-  const ShipsyColors._();
+  const ProjectColors._();
 
   // Primary
   static const Color DEFAULT = Color.fromRGBO(236, 240, 243, 1);

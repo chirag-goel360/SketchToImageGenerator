@@ -1,13 +1,33 @@
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:humangenerator/dinogame/game/audio_manager.dart';
+import 'package:humangenerator/dinogame/main_game.dart';
 import 'package:humangenerator/src/routes.dart';
 import 'package:humangenerator/src/utils/colors.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:humangenerator/src/localisation.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() {
-  runApp(
-    MyApp(),
-  );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var connectivityResult = await (Connectivity().checkConnectivity());
+  if (connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi) {
+    runApp(
+      MyApp(),
+    );
+  } else {
+    await Flame.util.fullScreen();
+    await Flame.util.setLandscape();
+    final dir = await getApplicationDocumentsDirectory();
+    Hive.init(dir.path);
+    await AudioManager.instance
+        .init(['8Bit Platformer Loop.wav', 'hurt7.wav', 'jump14.wav']);
+    runApp(
+      MyAppGame(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -30,13 +50,13 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       theme: ThemeData(
-        primaryColor: ShipsyColors.PRIMARY_LIGHT,
-        primaryColorDark: ShipsyColors.PRIMARY_DARK,
-        accentColor: ShipsyColors.SECONDARY_DARK,
-        errorColor: ShipsyColors.ERROR_DARK,
-        disabledColor: ShipsyColors.DISABLED_LIGHT,
-        backgroundColor: ShipsyColors.DEFAULT,
-        scaffoldBackgroundColor: ShipsyColors.DEFAULT,
+        primaryColor: ProjectColors.PRIMARY_LIGHT,
+        primaryColorDark: ProjectColors.PRIMARY_DARK,
+        accentColor: ProjectColors.SECONDARY_DARK,
+        errorColor: ProjectColors.ERROR_DARK,
+        disabledColor: ProjectColors.DISABLED_LIGHT,
+        backgroundColor: ProjectColors.DEFAULT,
+        scaffoldBackgroundColor: ProjectColors.DEFAULT,
         fontFamily: 'Lato',
         textTheme: TextTheme(
           headline1: TextStyle(
@@ -72,15 +92,13 @@ class MyApp extends StatelessWidget {
           button: TextStyle(
               fontSize: 16.0, fontWeight: FontWeight.w700, letterSpacing: 0),
         ).apply(
-          bodyColor: ShipsyColors.PRIMARY_DARK,
-          displayColor: ShipsyColors.PRIMARY_DARK,
+          bodyColor: ProjectColors.PRIMARY_DARK,
+          displayColor: ProjectColors.PRIMARY_DARK,
         ),
       ),
       initialRoute: Routes.SPLASH,
-      onGenerateRoute: ShipsyRouter.generateRoute,
+      onGenerateRoute: ProjectRouter.generateRoute,
     );
-
-    return  app
-    ;
+    return app;
   }
 }

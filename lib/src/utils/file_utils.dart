@@ -4,7 +4,7 @@ import 'package:humangenerator/src/utils/helpers.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 
-Future<ShipsyFileData> getSingleFileFromPicker({
+Future<ProjectFileData> getSingleFileFromPicker({
   List<String> allowedExtensions: const [],
 }) async {
   FilePickerResult result = await FilePicker.platform.pickFiles(
@@ -15,7 +15,7 @@ Future<ShipsyFileData> getSingleFileFromPicker({
   if (result != null) {
     PlatformFile platformFile = result.files.single;
     File file = File(platformFile.path);
-    return ShipsyFileData(
+    return ProjectFileData(
       name: platformFile.name,
       fileExtension: platformFile.extension,
       file: file,
@@ -25,12 +25,12 @@ Future<ShipsyFileData> getSingleFileFromPicker({
   }
 }
 
-class ShipsyFileData {
+class ProjectFileData {
   String name;
   String fileExtension;
   File file;
 
-  ShipsyFileData({
+  ProjectFileData({
     @required this.name,
     @required this.fileExtension,
     @required this.file,

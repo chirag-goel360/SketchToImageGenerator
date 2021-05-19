@@ -6,8 +6,8 @@ class CenterLoadingIndicator extends StatelessWidget {
   Widget build(BuildContext context) => Center(
         child: CircularProgressIndicator(
           strokeWidth: 4.0,
-          backgroundColor: ShipsyColors.PRIMARY_LIGHT,
-          valueColor: AlwaysStoppedAnimation(ShipsyColors.DEFAULT),
+          backgroundColor: ProjectColors.PRIMARY_LIGHT,
+          valueColor: AlwaysStoppedAnimation(ProjectColors.DEFAULT),
         ),
       );
 }

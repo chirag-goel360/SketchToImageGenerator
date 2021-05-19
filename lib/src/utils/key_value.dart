@@ -1,4 +1,3 @@
-// import 'package:Shipsy/src/localization.dart';
 
 class KeyValueData {
   final String key;

@@ -34,7 +34,7 @@ enum BUTTON_SIZE {
   LARGE,
 }
 
-class ShipsyButton extends StatelessWidget {
+class ProjectButton extends StatelessWidget {
   final ButtonTypes type;
   final bool isEnabled;
   final String buttonText;
@@ -47,7 +47,7 @@ class ShipsyButton extends StatelessWidget {
   final BUTTON_THEME theme;
   final BUTTON_SIZE size;
 
-  const ShipsyButton({
+  const ProjectButton({
     Key key,
     @required this.onPressed,
     @required this.buttonText,
@@ -56,7 +56,7 @@ class ShipsyButton extends StatelessWidget {
     this.prefixIcon,
     this.prefixImageIcon,
     this.loading: false,
-    this.margin: ShipsyEdgeInsets.ALL_0,
+    this.margin: ProjectEdgeInsets.ALL_0,
     this.padding,
     this.theme: BUTTON_THEME.LIGHT,
     this.size: BUTTON_SIZE.LARGE,
@@ -64,48 +64,48 @@ class ShipsyButton extends StatelessWidget {
 
   Color _getButtonColor() {
     if (!isEnabled) {
-      return ShipsyColors.DISABLED_LIGHT;
+      return ProjectColors.DISABLED_LIGHT;
     }
     Color buttonColor;
     switch (type) {
       case ButtonTypes.PRIMARY:
-        buttonColor = ShipsyColors.PRIMARY_LIGHT;
+        buttonColor = ProjectColors.PRIMARY_LIGHT;
         break;
       case ButtonTypes.SECONDARY:
-        buttonColor = ShipsyColors.DEFAULT;
+        buttonColor = ProjectColors.DEFAULT;
         break;
       case ButtonTypes.DARK:
-        buttonColor = ShipsyColors.PRIMARY_DARK;
+        buttonColor = ProjectColors.PRIMARY_DARK;
         break;
       case ButtonTypes.ERROR:
-        buttonColor = ShipsyColors.ERROR_LIGHT;
+        buttonColor = ProjectColors.ERROR_LIGHT;
         break;
       default:
-        buttonColor = ShipsyColors.DEFAULT;
+        buttonColor = ProjectColors.DEFAULT;
     }
     return buttonColor;
   }
 
   Color _getButtonTextColor() {
     if (!isEnabled) {
-      return ShipsyColors.DISABLED_DARK;
+      return ProjectColors.DISABLED_DARK;
     }
     Color buttonColor;
     switch (type) {
       case ButtonTypes.PRIMARY:
-        buttonColor = ShipsyColors.DEFAULT;
+        buttonColor = ProjectColors.DEFAULT;
         break;
       case ButtonTypes.SECONDARY:
-        buttonColor = ShipsyColors.PRIMARY_LIGHT;
+        buttonColor = ProjectColors.PRIMARY_LIGHT;
         break;
       case ButtonTypes.DARK:
-        buttonColor = ShipsyColors.DEFAULT;
+        buttonColor = ProjectColors.DEFAULT;
         break;
       case ButtonTypes.ERROR:
-        buttonColor = ShipsyColors.ERROR_DARK;
+        buttonColor = ProjectColors.ERROR_DARK;
         break;
       default:
-        buttonColor = ShipsyColors.PRIMARY_DARK;
+        buttonColor = ProjectColors.PRIMARY_DARK;
     }
     return buttonColor;
   }
@@ -162,13 +162,13 @@ class ShipsyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShipsyNeumorphicButton(
+    return ProjectNeumorphicButton(
       margin: margin,
      
       padding: padding == null
-          ? (ShipsyEdgeInsets.LEFT_10.add(prefixIcon == null
-              ? ShipsyEdgeInsets.RIGHT_10
-              : ShipsyEdgeInsets.RIGHT_15))
+          ? (ProjectEdgeInsets.LEFT_10.add(prefixIcon == null
+              ? ProjectEdgeInsets.RIGHT_10
+              : ProjectEdgeInsets.RIGHT_15))
           : padding,
       provideHapticFeedback: true,
       onClick: isEnabled && !loading ? onPressed : null,
@@ -181,12 +181,12 @@ class ShipsyButton extends StatelessWidget {
               height: 46,
               child: _buildButtonBody(Theme.of(context).textTheme.subtitle2),
             ),
-      style: ShipsyNeumorphicStyle(
+      style: ProjectNeumorphicStyle(
          boxShape: BOX_SHAPE.ROUND_RECT,
-          borderRadius: BorderRadius.all(ShipsyBorderRadius.CIRCULAR_14),
+          borderRadius: BorderRadius.all(ProjectBorderRadius.CIRCULAR_14),
           shape: NEUMORPHIC_SHAPE.FLAT,
-        depth: ShipsyNeumorphicTheme.DEPTH_5,
-        intensity: ShipsyNeumorphicTheme.INTENSITY_MAX,
+        depth: ProjectNeumorphicTheme.DEPTH_5,
+        intensity: ProjectNeumorphicTheme.INTENSITY_MAX,
         lightSource: LIGHT_SOURCE.TOP_LEFT,
         color: _getButtonColor(),
         shadowLightColor: _shadowMap[theme][_shadowColorTypes.shadowLight],
@@ -204,12 +204,12 @@ enum _shadowColorTypes {
 Map<BUTTON_THEME, Map<_shadowColorTypes, Color>> _shadowMap = {
   BUTTON_THEME.LIGHT: {
     _shadowColorTypes.shadowLight:
-        ShipsyNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
-    _shadowColorTypes.shadowDark: ShipsyNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
+        ProjectNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
+    _shadowColorTypes.shadowDark: ProjectNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
   },
   BUTTON_THEME.DARK: {
     _shadowColorTypes.shadowLight:
-        ShipsyNeumorphicTheme.LIGHT_SHADOW_DARK_THEME,
-    _shadowColorTypes.shadowDark: ShipsyNeumorphicTheme.DARK_SHADOW_DARK_THEME,
+        ProjectNeumorphicTheme.LIGHT_SHADOW_DARK_THEME,
+    _shadowColorTypes.shadowDark: ProjectNeumorphicTheme.DARK_SHADOW_DARK_THEME,
   },
 };

@@ -9,7 +9,7 @@ class DottedSeparator extends StatelessWidget {
 
   const DottedSeparator({
     this.height = 0.75,
-    this.color = ShipsyColors.DISABLED_DARK,
+    this.color = ProjectColors.DISABLED_DARK,
     this.prefix,
     this.suffix,
   });

@@ -14,18 +14,7 @@ class MyAppGame extends StatefulWidget {
 class _MyAppGameState extends State<MyAppGame> {
   @override
   void initState(){
-    funforinitialize();
     super.initState();
-  }
-
-  Future<void> funforinitialize() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Flame.util.fullScreen();
-  await Flame.util.setLandscape();
-  final dir = await getApplicationDocumentsDirectory();
-  Hive.init(dir.path);
-  await AudioManager.instance
-      .init(['8Bit Platformer Loop.wav', 'hurt7.wav', 'jump14.wav']);
   }
   @override
   Widget build(BuildContext context) {

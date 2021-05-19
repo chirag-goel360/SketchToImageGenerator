@@ -28,6 +28,7 @@ dependencies:
   splashscreen: null
   camera_deep_ar: ^0.0.1
   velocity_x: ^2.6.0
+  connectivity: ^3.0.3
 
 dev_dependencies:
   flutter_test:

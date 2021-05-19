@@ -3,11 +3,11 @@ import 'package:humangenerator/src/utils/edge_insets.dart';
 import 'package:humangenerator/src/utils/sized_boxes.dart';
 import 'package:flutter/material.dart';
 
-class ShipsyAppBar extends StatelessWidget {
+class ProjectAppBar extends StatelessWidget {
   final String icon;
   final String title;
 
-  ShipsyAppBar({
+  ProjectAppBar({
     Key key,
     @required this.icon,
     @required this.title,
@@ -22,7 +22,7 @@ class ShipsyAppBar extends StatelessWidget {
     }
 
     return Padding(
-      padding: ShipsyEdgeInsets.ALL_10,
+      padding: ProjectEdgeInsets.ALL_10,
       child: Row(
         children: <Widget>[
           Image.asset(
@@ -30,15 +30,15 @@ class ShipsyAppBar extends StatelessWidget {
             height: 54,
             width: 54,
           ),
-          ShipsySizedBoxes.WIDTH_10,
+          ProjectSizedBoxes.WIDTH_10,
           Expanded(
             child: Text(
               title,
               style: Theme.of(context).textTheme.headline2,
             ),
           ),
-          ShipsySizedBoxes.WIDTH_20,
-          ShipsyIconButton(
+          ProjectSizedBoxes.WIDTH_20,
+          ProjectIconButton(
             icon: Icons.menu,
             onPressed: _handleMenuPressed,
           ),

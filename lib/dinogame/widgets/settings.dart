@@ -22,6 +22,7 @@ class Settings extends StatelessWidget {
               color: Colors.white,
             ),
           ),
+          
           ValueListenableBuilder(
             valueListenable: AudioManager.instance.listenablesfx,
             builder: (BuildContext context, bool value, Widget child) {

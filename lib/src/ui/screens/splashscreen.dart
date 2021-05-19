@@ -16,7 +16,7 @@ class _SketchSplashScreenState extends State<SketchSplashScreen> {
     final _translate = AppLocalization.of(context).translate;
     final _textTheme = Theme.of(context).textTheme;
     return SplashScreen(
-      backgroundColor: ShipsyColors.PRIMARY_DARK,
+      backgroundColor: ProjectColors.PRIMARY_DARK,
       seconds: 3,
       routeName: Routes.SKETCHTOFACE,
       title: Text(
@@ -24,10 +24,10 @@ class _SketchSplashScreenState extends State<SketchSplashScreen> {
         style: _textTheme.subtitle1,
        ),
        navigateAfterSeconds:  Routes.SKETCHTOFACE,
-      loaderColor: ShipsyColors.DEFAULT,
+      loaderColor: ProjectColors.DEFAULT,
       image: Image.asset(
          'assets/module_icons/sketchHuman.png',
-         color: ShipsyColors.DEFAULT,
+         color: ProjectColors.DEFAULT,
       ),
       loadingText:Text(
         _translate(Strings.SKETCH_TO_IMAGE),

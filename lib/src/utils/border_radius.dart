@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ShipsyBorderRadius {
+class ProjectBorderRadius {
   // will not be instantiated
-  const ShipsyBorderRadius._();
+  const ProjectBorderRadius._();
 
   static const Radius CIRCULAR_3 = const Radius.circular(3);
   static const Radius CIRCULAR_4 = const Radius.circular(4);

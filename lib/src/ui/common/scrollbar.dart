@@ -19,14 +19,14 @@ enum SCROLL_BAR_TYPE {
   DARK,
 }
 
-class ShipsyDraggableScrollbar extends StatefulWidget {
+class ProjectDraggableScrollbar extends StatefulWidget {
   final double heightScrollThumb;
   final double paddingDelta;
   final Widget child;
   final ScrollController controller;
   final SCROLL_BAR_TYPE type;
 
-  const ShipsyDraggableScrollbar({
+  const ProjectDraggableScrollbar({
     this.heightScrollThumb: 40.0,
     @required this.child,
     @required this.controller,
@@ -35,11 +35,11 @@ class ShipsyDraggableScrollbar extends StatefulWidget {
   }) : super();
 
   @override
-  _ShipsyDraggableScrollbarState createState() =>
-      new _ShipsyDraggableScrollbarState();
+  _ProjectDraggableScrollbarState createState() =>
+      new _ProjectDraggableScrollbarState();
 }
 
-class _ShipsyDraggableScrollbarState extends State<ShipsyDraggableScrollbar> {
+class _ProjectDraggableScrollbarState extends State<ProjectDraggableScrollbar> {
   //this counts offset for scroll thumb in Vertical axis
   double _barOffset;
   //this counts offset for list in Vertical axis
@@ -189,14 +189,14 @@ class _ShipsyDraggableScrollbarState extends State<ShipsyDraggableScrollbar> {
   }
 
   Widget _buildScrollThumb() {
-    return ShipsyNeumorphic(
-      padding: ShipsyEdgeInsets.ALL_0,
-      style: ShipsyNeumorphicStyle(
+    return ProjectNeumorphic(
+      padding: ProjectEdgeInsets.ALL_0,
+      style: ProjectNeumorphicStyle(
         boxShape: BOX_SHAPE.ROUND_RECT,
-        borderRadius: BorderRadius.all(ShipsyBorderRadius.CIRCULAR_12),
+        borderRadius: BorderRadius.all(ProjectBorderRadius.CIRCULAR_12),
         shape: NEUMORPHIC_SHAPE.FLAT,
-        depth: ShipsyNeumorphicTheme.DEPTH_5,
-        intensity: ShipsyNeumorphicTheme.INTENSITY_MAX,
+        depth: ProjectNeumorphicTheme.DEPTH_5,
+        intensity: ProjectNeumorphicTheme.INTENSITY_MAX,
         lightSource: LIGHT_SOURCE.TOP_LEFT,
         color: _colorMap[widget.type][_colorType.BG],
         shadowLightColor: _colorMap[widget.type][_colorType.SHADOW_LIGHT],
@@ -218,13 +218,13 @@ enum _colorType {
 
 Map<SCROLL_BAR_TYPE, Map<_colorType, Color>> _colorMap = {
   SCROLL_BAR_TYPE.LIGHT: {
-    _colorType.BG: ShipsyColors.DEFAULT,
-    _colorType.SHADOW_LIGHT: ShipsyNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
-    _colorType.SHADOW_DARK: ShipsyNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
+    _colorType.BG: ProjectColors.DEFAULT,
+    _colorType.SHADOW_LIGHT: ProjectNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
+    _colorType.SHADOW_DARK: ProjectNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
   },
   SCROLL_BAR_TYPE.DARK: {
-    _colorType.BG: ShipsyColors.PRIMARY_DARK,
-    _colorType.SHADOW_LIGHT: ShipsyNeumorphicTheme.LIGHT_SHADOW_DARK_THEME,
-    _colorType.SHADOW_DARK: ShipsyNeumorphicTheme.DARK_SHADOW_DARK_THEME,
+    _colorType.BG: ProjectColors.PRIMARY_DARK,
+    _colorType.SHADOW_LIGHT: ProjectNeumorphicTheme.LIGHT_SHADOW_DARK_THEME,
+    _colorType.SHADOW_DARK: ProjectNeumorphicTheme.DARK_SHADOW_DARK_THEME,
   },
 };

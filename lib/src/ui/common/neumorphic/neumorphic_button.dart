@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:humangenerator/src/utils/edge_insets.dart';
 
-class ShipsyNeumorphicButton extends StatelessWidget {
+class ProjectNeumorphicButton extends StatelessWidget {
   final EdgeInsets margin;
   final EdgeInsets padding;
   final Widget child;
   final Function onClick;
   final bool provideHapticFeedback;
-  final ShipsyNeumorphicStyle style;
+  final ProjectNeumorphicStyle style;
   final double minDistance;
   final String tooltip;
   final bool pressed;
 
-  const ShipsyNeumorphicButton(
+  const ProjectNeumorphicButton(
       {Key key,
-      this.margin: ShipsyEdgeInsets.ALL_0,
-      this.padding: ShipsyEdgeInsets.ALL_0,
+      this.margin: ProjectEdgeInsets.ALL_0,
+      this.padding: ProjectEdgeInsets.ALL_0,
       @required this.child,
       this.onClick,
       this.provideHapticFeedback: true,

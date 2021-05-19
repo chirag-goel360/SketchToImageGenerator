@@ -7,8 +7,8 @@ class SketchToFaceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ShipsyColors.SECONDARY_LIGHT,
-       body: ShipsySafeArea(
+      backgroundColor: ProjectColors.SECONDARY_LIGHT,
+       body: ProjectSafeArea(
           child: Home()
         ),
     );

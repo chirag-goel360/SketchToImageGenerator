@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:humangenerator/src/ui/screens/sketch_to_image_screen.dart';
 import 'package:humangenerator/src/ui/screens/splashscreen.dart';
 
-class ShipsyRouter{
-  ShipsyRouter._();
+class ProjectRouter{
+  ProjectRouter._();
 
    static Route<dynamic> generateRoute(RouteSettings settings){
      Widget Function(BuildContext context) builder;
