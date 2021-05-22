@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:humangenerator/src/localisation.dart';
 import 'package:humangenerator/src/ui/common/app_bar.dart';
@@ -76,7 +77,6 @@ class _HomeState extends State<Home> {
   }
 
   void fetchResponse(var base64Image) async {
-    
     // String base64 = base64Encode(base64Image);
     var data = {"Image": base64Image};
     var url = 'http://192.168.0.107:5000/predict';
@@ -115,7 +115,7 @@ class _HomeState extends State<Home> {
   void pickImage() async {
 
     // var file = await picker.getImage(source: ImageSource.gallery);
-    // // 
+    // //
     // setState(() {
     //   if (file != null) {
     //     var _image = File(file.path);
@@ -125,7 +125,7 @@ class _HomeState extends State<Home> {
     //     print('No image selected.');
     //   }
     // });
-      
+
     FilePickerResult result = await FilePicker.platform.pickFiles();
     if (result != null) {
       File file = File(result.files.single.path);
@@ -144,109 +144,113 @@ class _HomeState extends State<Home> {
 
     Widget _buildMobileUI() {
       return Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: [
-            ProjectAppBar(
-                icon: 'assets/module_icons/sketchHuman.png',
-                title: _translate(Strings.SKETCH_TO_IMAGE)),
-            Padding(
-              padding: ProjectEdgeInsets.ALL_10,
-              child: Container(
-                height: size.height * 0.41,
-                width: 310,
-                child: ProjectCard(
-                  heading: _translate(Strings.SKETCH_BOARD),
-                  headingSuffix: Row(
-                    children: [
-                      GestureDetector(
-                        child: Icon(
-                          Icons.layers_clear,
-                          color: Colors.black,
-                        ),
-                        onTap: () {
-                          this.setState(() {
-                            points.clear();
-                          });
-                        },
-                      ),
-                      ProjectSizedBoxes.WIDTH_3,
-                      GestureDetector(
-                        child: Icon(
-                          Icons.save,
-                          color: Colors.black,
-                        ),
-                        onTap: () {
-                          saveToImage(points);
-                        },
-                      ),
-                      ProjectSizedBoxes.WIDTH_3,
-                      GestureDetector(
-                        child: Icon(
-                          Icons.camera_alt,
-                          color: Colors.black,
-                        ),
-                        onTap: () {
-                          pickImage();
-                        },
-                      ),
-                    ],
-                  ),
-                  body: Padding(
-                    padding: ProjectEdgeInsets.TOP_10,
-                    child: Container(
-                      width: 256,
-                      height: 256,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.4),
-                            blurRadius: 5.0,
-                            spreadRadius: 1,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ProjectAppBar(
+                    icon: 'assets/module_icons/sketchHuman.png',
+                    title: _translate(Strings.SKETCH_TO_IMAGE)),
+                Padding(
+                  padding: ProjectEdgeInsets.ALL_10,
+                  child: Container(
+                    height: size.height * 0.41,
+                    width: 310,
+                    child: ProjectCard(
+                      heading: _translate(Strings.SKETCH_BOARD),
+                      headingSuffix: Row(
+                        children: [
+                          GestureDetector(
+                            child: Icon(
+                              Icons.layers_clear,
+                              color: Colors.black,
+                            ),
+                            onTap: () {
+                              this.setState(() {
+                                points.clear();
+                              });
+                            },
+                          ),
+                          ProjectSizedBoxes.WIDTH_3,
+                          GestureDetector(
+                            child: Icon(
+                              Icons.save,
+                              color: Colors.black,
+                            ),
+                            onTap: () {
+                              saveToImage(points);
+                            },
+                          ),
+                          ProjectSizedBoxes.WIDTH_3,
+                          GestureDetector(
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.black,
+                            ),
+                            onTap: () {
+                              pickImage();
+                            },
                           ),
                         ],
                       ),
-                      child: GestureDetector(
-                        onPanDown: (details) {
-                          this.setState(() {
-                            points.add(
-                              DrawingArea(
-                                  point: details.localPosition,
-                                  areaPaint: Paint()
-                                    ..strokeCap = StrokeCap.round
-                                    ..isAntiAlias = true
-                                    ..color = Colors.white
-                                    ..strokeWidth = 2.0),
-                            );
-                          });
-                        },
-                        onPanUpdate: (details) {
-                          this.setState(() {
-                            points.add(
-                              DrawingArea(
-                                  point: details.localPosition,
-                                  areaPaint: Paint()
-                                    ..strokeCap = StrokeCap.round
-                                    ..isAntiAlias = true
-                                    ..color = Colors.white
-                                    ..strokeWidth = 2.0),
-                            );
-                          });
-                        },
-                        onPanEnd: (details) {
-                          saveToImage(points);
-                          this.setState(() {
-                            points.add(null);
-                          });
-                        },
-                        child: SizedBox.expand(
-                          child: ClipRRect(
+                      body: Padding(
+                        padding: ProjectEdgeInsets.TOP_10,
+                        child: Container(
+                          width: 256,
+                          height: 256,
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
-                            child: CustomPaint(
-                              painter: MyCustomPainter(
-                                points: points,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.4),
+                                blurRadius: 5.0,
+                                spreadRadius: 1,
+                              ),
+                            ],
+                          ),
+                          child: GestureDetector(
+                            onPanDown: (details) {
+                              this.setState(() {
+                                points.add(
+                                  DrawingArea(
+                                      point: details.localPosition,
+                                      areaPaint: Paint()
+                                        ..strokeCap = StrokeCap.round
+                                        ..isAntiAlias = true
+                                        ..color = Colors.white
+                                        ..strokeWidth = 2.0),
+                                );
+                              });
+                            },
+                            onPanUpdate: (details) {
+                              this.setState(() {
+                                points.add(
+                                  DrawingArea(
+                                      point: details.localPosition,
+                                      areaPaint: Paint()
+                                        ..strokeCap = StrokeCap.round
+                                        ..isAntiAlias = true
+                                        ..color = Colors.white
+                                        ..strokeWidth = 2.0),
+                                );
+                              });
+                            },
+                            onPanEnd: (details) {
+                              saveToImage(points);
+                              this.setState(() {
+                                points.add(null);
+                              });
+                            },
+                            child: SizedBox.expand(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                child: CustomPaint(
+                                  painter: MyCustomPainter(
+                                    points: points,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -255,23 +259,138 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-              ),
-            ),
-            ProjectSizedBoxes.HEIGHT_5,
-            Container(
-              height: size.height * 0.38,
-              width: 310,
-              child: ProjectCard(
-                heading: _translate(Strings.OUTPUT_BOARD),
-                body: Container(
-                  height: 256,
-                  width: 256,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                ProjectSizedBoxes.HEIGHT_5,
+                Container(
+                  height: size.height * 0.38,
+                  width: 310,
+                  child: ProjectCard(
+                    heading: _translate(Strings.OUTPUT_BOARD),
+                    body: Container(
+                      height: 256,
+                      width: 256,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: imageOutput,
+                    ),
                   ),
-                  child: imageOutput,
                 ),
-              ),
+              ],
+            ),
+            DraggableScrollableSheet(
+              initialChildSize: 0.065,
+              minChildSize: 0.06,
+              maxChildSize: 0.4,
+              builder: (BuildContext context, scroll){
+                return Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: greyshade100,
+                    boxShadow: [
+                      BoxShadow(
+                        color: black,
+                        offset: Offset(
+                          10,
+                          10,
+                        ),
+                        blurRadius: 10,
+                      ),
+                      BoxShadow(
+                        color: white,
+                        offset: Offset(
+                          -10,
+                          -10,
+                        ),
+                        blurRadius: 10,
+                      ),
+                    ],
+                  ),
+                  child: ListView(
+                    controller: scroll,
+                    children: <Widget>[
+                      Center(
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.all(15),
+                              child: Icon(
+                                Icons.share,
+                                color: greyshade600,
+                              ),
+                            ),
+                            Text(
+                              'Share',
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              'Share the app with your friends',
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 35,
+                            ),
+                            Container(
+                              width: 225,
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: black,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: white,
+                                    offset: Offset(
+                                      3,
+                                      3,
+                                    ),
+                                    blurRadius: 3,
+                                    spreadRadius: -3,
+                                  ),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  IconButton(
+                                    icon: Icon(
+                                      FontAwesomeIcons.paintBrush,
+                                      color: Colors.blue,
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      FontAwesomeIcons.snapchat,
+                                      color: Colors.redAccent,
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            FaIcon(
+                              FontAwesomeIcons.copy,
+                              color: Colors.pink,
+                            ),
+                            Text(
+                              'Copy link',
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                );
+              },
             ),
           ],
         ),
@@ -535,3 +654,10 @@ class _HomeState extends State<Home> {
     // );
   }
 }
+
+Color greyshade100 = Colors.grey.shade100;
+Color white = Colors.white;
+Color black = Colors.black.withOpacity(0.07);
+Color greyshade600 = Colors.grey.shade600;
+
+
