@@ -1,5 +1,8 @@
 {
     "SKETCH_TO_IMAGE": "Sketch to Image Conversion",
     "SKETCH_BOARD": "Sketch Board",
-    "OUTPUT_BOARD": "Output Board"
+    "OUTPUT_BOARD": "Output Board",
+    "MENU": "Menu",
+    "SHOE_TO_IMAGE": "Shoe Conversion",
+    "BAG_TO_IMAGE": "Bag Conversion"
 }

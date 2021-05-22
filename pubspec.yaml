@@ -30,6 +30,7 @@ dependencies:
   velocity_x: ^2.6.0
   connectivity: ^3.0.3
   font_awesome_flutter:
+  
 
 dev_dependencies:
   flutter_test:

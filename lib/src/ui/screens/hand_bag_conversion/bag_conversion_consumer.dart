@@ -2,11 +2,11 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:humangenerator/src/localisation.dart';
 import 'package:humangenerator/src/ui/common/app_bar.dart';
 import 'package:humangenerator/src/ui/common/card.dart';
+import 'package:humangenerator/src/ui/common/loading_indicator.dart';
 import 'dart:convert';
 import 'dart:ui' as ui;
 import 'package:humangenerator/src/utils/drawingarea.dart';
@@ -17,16 +17,17 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class Home extends StatefulWidget {
+class HandBagConversionConsumer extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _HandBagConversionConsumerState createState() => _HandBagConversionConsumerState();
 }
 
-class _HomeState extends State<Home> {
+class _HandBagConversionConsumerState extends State<HandBagConversionConsumer> {
   List<DrawingArea> points = [];
   Widget imageOutput;
   var img1;
   final picker = ImagePicker();
+  bool loading = false;
 
   void loadImage(File file) {
     setState(() {
@@ -78,6 +79,9 @@ class _HomeState extends State<Home> {
 
   void fetchResponse(var base64Image) async {
     // String base64 = base64Encode(base64Image);
+    setState(() {
+      loading = true;
+    });
     var data = {"Image": base64Image};
     var url = 'http://192.168.0.107:5000/predict';
     Map<String, String> headers = {
@@ -97,6 +101,9 @@ class _HomeState extends State<Home> {
     } catch (e) {
       print(e);
       print("Error has Occured");
+      setState(() {
+        loading =false;
+      });
       return null;
     }
   }
@@ -104,6 +111,7 @@ class _HomeState extends State<Home> {
   void displayResponseImage(String bytes) async {
     Uint8List convertedBytes = base64Decode(bytes);
     setState(() {
+      loading = false;
       imageOutput = Container(
         width: 256,
         height: 256,
@@ -113,7 +121,6 @@ class _HomeState extends State<Home> {
   }
 
   void pickImage() async {
-
     // var file = await picker.getImage(source: ImageSource.gallery);
     // //
     // setState(() {
@@ -152,7 +159,7 @@ class _HomeState extends State<Home> {
               children: [
                 ProjectAppBar(
                     icon: 'assets/module_icons/sketchHuman.png',
-                    title: _translate(Strings.SKETCH_TO_IMAGE)),
+                    title: _translate(Strings.BAG_TO_IMAGE)),
                 Padding(
                   padding: ProjectEdgeInsets.ALL_10,
                   child: Container(
@@ -245,7 +252,8 @@ class _HomeState extends State<Home> {
                             },
                             child: SizedBox.expand(
                               child: ClipRRect(
-                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
                                 child: CustomPaint(
                                   painter: MyCustomPainter(
                                     points: points,
@@ -271,126 +279,11 @@ class _HomeState extends State<Home> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
-                      child: imageOutput,
+                      child: loading ? CenterLoadingIndicator() : imageOutput,
                     ),
                   ),
                 ),
               ],
-            ),
-            DraggableScrollableSheet(
-              initialChildSize: 0.065,
-              minChildSize: 0.06,
-              maxChildSize: 0.4,
-              builder: (BuildContext context, scroll){
-                return Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: greyshade100,
-                    boxShadow: [
-                      BoxShadow(
-                        color: black,
-                        offset: Offset(
-                          10,
-                          10,
-                        ),
-                        blurRadius: 10,
-                      ),
-                      BoxShadow(
-                        color: white,
-                        offset: Offset(
-                          -10,
-                          -10,
-                        ),
-                        blurRadius: 10,
-                      ),
-                    ],
-                  ),
-                  child: ListView(
-                    controller: scroll,
-                    children: <Widget>[
-                      Center(
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.all(15),
-                              child: Icon(
-                                Icons.share,
-                                color: greyshade600,
-                              ),
-                            ),
-                            Text(
-                              'Share',
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'Share the app with your friends',
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 35,
-                            ),
-                            Container(
-                              width: 225,
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: black,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: white,
-                                    offset: Offset(
-                                      3,
-                                      3,
-                                    ),
-                                    blurRadius: 3,
-                                    spreadRadius: -3,
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  IconButton(
-                                    icon: Icon(
-                                      FontAwesomeIcons.paintBrush,
-                                      color: Colors.blue,
-                                    ),
-                                    onPressed: () {},
-                                  ),
-                                  IconButton(
-                                    icon: Icon(
-                                      FontAwesomeIcons.snapchat,
-                                      color: Colors.redAccent,
-                                    ),
-                                    onPressed: () {},
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 25,
-                            ),
-                            FaIcon(
-                              FontAwesomeIcons.copy,
-                              color: Colors.pink,
-                            ),
-                            Text(
-                              'Copy link',
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  )
-                );
-              },
             ),
           ],
         ),
@@ -527,137 +420,5 @@ class _HomeState extends State<Home> {
     }
 
     return VxDevice(mobile: _buildMobileUI(), web: _buildWebUI());
-    // return Scaffold(
-    //   body: Stack(
-    //     children: [
-    //       Container(
-    //         decoration: BoxDecoration(
-    //           gradient: LinearGradient(
-    //             begin: Alignment.topCenter,
-    //             end: Alignment.bottomCenter,
-    //             colors: [
-    //               Color.fromRGBO(138, 35, 135, 1.0),
-    //               Color.fromRGBO(255, 64, 87, 1.0),
-    //               Color.fromRGBO(242, 113, 33, 1.0),
-    //             ],
-    //           ),
-    //         ),
-    //       ),
-    //       Center(
-    //         child: Column(
-    //           crossAxisAlignment: CrossAxisAlignment.center,
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: [
-    //             Padding(
-    //               padding: EdgeInsets.all(8),
-    //               child: Container(
-    //                 width: 256,
-    //                 height: 256,
-    //                 decoration: BoxDecoration(
-    //                   borderRadius: BorderRadius.all(Radius.circular(20)),
-    //                   boxShadow: [
-    //                     BoxShadow(
-    //                       color: Colors.black.withOpacity(0.4),
-    //                       blurRadius: 5.0,
-    //                       spreadRadius: 1,
-    //                     ),
-    //                   ],
-    //                 ),
-    //                 child: GestureDetector(
-    //                   onPanDown: (details) {
-    //                     this.setState(() {
-    //                       points.add(
-    //                         DrawingArea(
-    //                             point: details.localPosition,
-    //                             areaPaint: Paint()
-    //                               ..strokeCap = StrokeCap.round
-    //                               ..isAntiAlias = true
-    //                               ..color = Colors.white
-    //                               ..strokeWidth = 2.0),
-    //                       );
-    //                     });
-    //                   },
-    //                   onPanUpdate: (details) {
-    //                     this.setState(() {
-    //                       points.add(
-    //                         DrawingArea(
-    //                             point: details.localPosition,
-    //                             areaPaint: Paint()
-    //                               ..strokeCap = StrokeCap.round
-    //                               ..isAntiAlias = true
-    //                               ..color = Colors.white
-    //                               ..strokeWidth = 2.0),
-    //                       );
-    //                     });
-    //                   },
-    //                   onPanEnd: (details) {
-    //                     saveToImage(points);
-    //                     this.setState(() {
-    //                       points.add(null);
-    //                     });
-    //                   },
-    //                   child: SizedBox.expand(
-    //                     child: ClipRRect(
-    //                       borderRadius: BorderRadius.all(Radius.circular(20)),
-    //                       child: CustomPaint(
-    //                         painter: MyCustomPainter(
-    //                           points: points,
-    //                         ),
-    //                       ),
-    //                     ),
-    //                   ),
-    //                 ),
-    //               ),
-    //             ),
-    //             Container(
-    //               width: MediaQuery.of(context).size.width * 0.8,
-    //               decoration: BoxDecoration(
-    //                 color: Colors.white,
-    //                 borderRadius: BorderRadius.all(Radius.circular(20)),
-    //               ),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.center,
-    //                 children: [
-    //                   IconButton(
-    //                     icon: Icon(
-    //                       Icons.layers_clear,
-    //                       color: Colors.black,
-    //                     ),
-    //                     onPressed: () {
-    //                       this.setState(() {
-    //                         points.clear();
-    //                       });
-    //                     },
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //             Padding(
-    //               padding: EdgeInsets.symmetric(
-    //                 vertical: 10,
-    //               ),
-    //               child: Container(
-    //                 child: Center(
-    //                   child: Container(
-    //                     height: 256,
-    //                     width: 256,
-    //                     child: imageOutput,
-    //                   ),
-    //                 ),
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }
-
-Color greyshade100 = Colors.grey.shade100;
-Color white = Colors.white;
-Color black = Colors.black.withOpacity(0.07);
-Color greyshade600 = Colors.grey.shade600;
-
-

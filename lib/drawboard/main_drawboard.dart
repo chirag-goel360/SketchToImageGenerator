@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:humangenerator/src/ui/common/safe_area.dart';
 
 class DrawingApp extends StatelessWidget {
   @override
@@ -43,157 +45,158 @@ class _DrawWorkerState extends State<DrawWorker> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(8),
-        child: Container(
-          padding: EdgeInsets.only(
-            left: 8,
-            right: 8,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: Colors.blue.shade300,
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(8),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    IconButton(
-                        icon: Icon(
-                          Icons.brush_sharp,
-                        ),
-                        onPressed:() {
-                          setState(() {
-                            if(selectedMode == SelectedMode.StrokeWidth)
-                              showBottomList = !showBottomList;
-                            selectedMode = SelectedMode.StrokeWidth;
-                          });
-                        }
-                    ),
-                    IconButton(
-                        icon: Icon(
-                          Icons.opacity,
-                        ),
-                        onPressed:() {
-                          setState(() {
-                            if(selectedMode == SelectedMode.Opacity)
-                              showBottomList = !showBottomList;
-                            selectedMode = SelectedMode.Opacity;
-                          });
-                        }
-                    ),
-                    IconButton(
-                        icon: Icon(
-                          Icons.color_lens_outlined,
-                        ),
-                        onPressed:() {
-                          setState(() {
-                            if(selectedMode == SelectedMode.Color)
-                              showBottomList = !showBottomList;
-                            selectedMode = SelectedMode.Color;
-                          });
-                        }
-                    ),
-                    IconButton(
-                        icon: Icon(
-                          Icons.close_rounded,
-                        ),
-                        onPressed:() {
-                          setState(() {
-                            showBottomList = false;
-                            points.clear();
-                          });
-                        }
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.save,
-                      ),
-                      onPressed: (){
-                        //sharecode;
-                      },
-                    ),
-                  ],
-                ),
-                Visibility(
-                  child:(selectedMode == SelectedMode.Color) ?
+    return ProjectSafeArea(
+      child: Scaffold(
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.all(8),
+          child: Container(
+            padding: EdgeInsets.only(
+              left: 8,
+              right: 8,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: Colors.blue.shade300,
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(8),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: getColorList(),
-                  ) :
-                  Slider(
-                    value:(selectedMode == SelectedMode.StrokeWidth) ? strokeWidth : opacity,
-                    max:(selectedMode == SelectedMode.StrokeWidth) ? 50.0 : 1.0,
-                    min: 0.0,
-                    onChanged:(val) {
-                      setState(() {
-                        if(selectedMode == SelectedMode.StrokeWidth)
-                          strokeWidth = val;
-                        else
-                          opacity = val;
-                      });
-                    },
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      IconButton(
+                          icon: Icon(
+                            Icons.brush_sharp,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (selectedMode == SelectedMode.StrokeWidth)
+                                showBottomList = !showBottomList;
+                              selectedMode = SelectedMode.StrokeWidth;
+                            });
+                          }),
+                      IconButton(
+                          icon: Icon(
+                            Icons.opacity,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (selectedMode == SelectedMode.Opacity)
+                                showBottomList = !showBottomList;
+                              selectedMode = SelectedMode.Opacity;
+                            });
+                          }),
+                      IconButton(
+                          icon: Icon(
+                            Icons.color_lens_outlined,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (selectedMode == SelectedMode.Color)
+                                showBottomList = !showBottomList;
+                              selectedMode = SelectedMode.Color;
+                            });
+                          }),
+                      IconButton(
+                          icon: Icon(
+                            Icons.close_rounded,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              showBottomList = false;
+                              points.clear();
+                            });
+                          }),
+                      IconButton(
+                        icon: Icon(
+                          Icons.save,
+                        ),
+                        onPressed: () {
+                          sharecode();
+                        },
+                      ),
+                    ],
                   ),
-                  visible: showBottomList,
-                ),
-              ],
+                  Visibility(
+                    child: (selectedMode == SelectedMode.Color)
+                        ? Wrap(
+                            spacing: 7.0,
+                            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: getColorList(),
+                          )
+                        : Slider(
+                            value: (selectedMode == SelectedMode.StrokeWidth)
+                                ? strokeWidth
+                                : opacity,
+                            max: (selectedMode == SelectedMode.StrokeWidth)
+                                ? 50.0
+                                : 1.0,
+                            min: 0.0,
+                            onChanged: (val) {
+                              setState(() {
+                                if (selectedMode == SelectedMode.StrokeWidth)
+                                  strokeWidth = val;
+                                else
+                                  opacity = val;
+                              });
+                            },
+                          ),
+                    visible: showBottomList,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-      body: GestureDetector(
-        onPanUpdate:(details) {
-          setState(() {
-            RenderBox renderBox = context.findRenderObject();
-            points.add(
-              DrawingPoints(
-                  points: renderBox.globalToLocal(
-                    details.globalPosition,
-                  ),
-                  paint: Paint()
-                    ..strokeCap = strokeCap
-                    ..isAntiAlias = true
-                    ..color = selectedColor.withOpacity(opacity)
-                    ..strokeWidth = strokeWidth
-              ),
-            );
-          });
-        },
-        onPanStart:(details) {
-          setState(() {
-            RenderBox renderBox = context.findRenderObject();
-            points.add(
-              DrawingPoints(
-                  points: renderBox.globalToLocal(
-                    details.globalPosition,
-                  ),
-                  paint: Paint()
-                    ..strokeCap = strokeCap
-                    ..isAntiAlias = true
-                    ..color = selectedColor.withOpacity(opacity)
-                    ..strokeWidth = strokeWidth
-              ),
-            );
-          });
-        },
-        onPanEnd:(details) {
-          setState(() {
-            points.add(null);
-          });
-        },
-        child: RepaintBoundary(
-          key: globalKey,
-          child: Container(
-            color: Colors.white,
-            child: CustomPaint(
-              size: Size.infinite,
-              painter: DrawingCreater(
-                pointsList: points,
+        body: GestureDetector(
+          onPanUpdate: (details) {
+            setState(() {
+              RenderBox renderBox = context.findRenderObject();
+              points.add(
+                DrawingPoints(
+                    points: renderBox.globalToLocal(
+                      details.globalPosition,
+                    ),
+                    paint: Paint()
+                      ..strokeCap = strokeCap
+                      ..isAntiAlias = true
+                      ..color = selectedColor.withOpacity(opacity)
+                      ..strokeWidth = strokeWidth),
+              );
+            });
+          },
+          onPanStart: (details) {
+            setState(() {
+              RenderBox renderBox = context.findRenderObject();
+              points.add(
+                DrawingPoints(
+                    points: renderBox.globalToLocal(
+                      details.globalPosition,
+                    ),
+                    paint: Paint()
+                      ..strokeCap = strokeCap
+                      ..isAntiAlias = true
+                      ..color = selectedColor.withOpacity(opacity)
+                      ..strokeWidth = strokeWidth),
+              );
+            });
+          },
+          onPanEnd: (details) {
+            setState(() {
+              points.add(null);
+            });
+          },
+          child: RepaintBoundary(
+            key: globalKey,
+            child: Container(
+              color: Colors.white,
+              child: CustomPaint(
+                size: Size.infinite,
+                painter: DrawingCreater(
+                  pointsList: points,
+                ),
               ),
             ),
           ),
@@ -202,65 +205,65 @@ class _DrawWorkerState extends State<DrawWorker> {
     );
   }
 
-  // Future<void> sharecode() async{
-  //   try{
-  //     RenderRepaintBoundary boundary = globalKey.currentContext.findRenderObject();
-  //     var item = await boundary.toImage();
-  //     ByteData byteData = await item.toByteData(
-  //       format: ImageByteFormat.png,
-  //     );
-  //     await Share.file(
-  //       'esys image',
-  //       'qrcode.png',
-  //       byteData.buffer.asUint8List(),
-  //       'image/png',
-  //     );
-  //   }
-  //   catch(e){
-  //     print(e.toString());
-  //   }
-  // }
+  Future<void> sharecode() async {
+    try {
+      RenderRepaintBoundary boundary =
+          globalKey.currentContext.findRenderObject();
+      var item = await boundary.toImage();
+      ByteData byteData = await item.toByteData(
+        format: ImageByteFormat.png,
+      );
+      // await Share.file(
+      //   'esys image',
+      //   'qrcode.png',
+      //   byteData.buffer.asUint8List(),
+      //   'image/png',
+      // );
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   getColorList() {
     List<Widget> listWidget = [];
-    for(Color color in colors) {
+    for (Color color in colors) {
       listWidget.add(
         colorCircle(color),
       );
     }
     Widget colorPicker = GestureDetector(
-      onTap:() {
+      onTap: () {
         showDialog(
           context: context,
-          builder:(_){
+          builder: (_) {
             return AlertDialog(
-            title: Text(
-              'Pick a color',
-            ),
-            content: SingleChildScrollView(
-              child: ColorPicker(
-                pickerColor: pickerColor,
-                onColorChanged:(color) {
-                  pickerColor = color;
-                },
-                //showLabel: true,
-                pickerAreaHeightPercent: 0.8,
+              title: Text(
+                'Pick a color',
               ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: Text(
-                  'Save',
+              content: SingleChildScrollView(
+                child: ColorPicker(
+                  pickerColor: pickerColor,
+                  onColorChanged: (color) {
+                    pickerColor = color;
+                  },
+                  //showLabel: true,
+                  pickerAreaHeightPercent: 0.8,
                 ),
-                onPressed:() {
-                  setState(() {
-                    selectedColor = pickerColor;
-                  });
-                  Navigator.of(context).pop();
-                },
               ),
-            ],
-          );
+              actions: <Widget>[
+                TextButton(
+                  child: Text(
+                    'Save',
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      selectedColor = pickerColor;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
           },
         );
       },
@@ -273,11 +276,7 @@ class _DrawWorkerState extends State<DrawWorker> {
           width: 36,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                Colors.red,
-                Colors.green,
-                Colors.blue
-              ],
+              colors: [Colors.red, Colors.green, Colors.blue],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -291,7 +290,7 @@ class _DrawWorkerState extends State<DrawWorker> {
 
   Widget colorCircle(Color color) {
     return GestureDetector(
-      onTap:() {
+      onTap: () {
         setState(() {
           selectedColor = color;
         });
@@ -317,22 +316,21 @@ class DrawingCreater extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    for(int i=0; i < pointsList.length-1; i++) {
-      if(pointsList[i] != null && pointsList[i+1] != null) {
+    for (int i = 0; i < pointsList.length - 1; i++) {
+      if (pointsList[i] != null && pointsList[i + 1] != null) {
         canvas.drawLine(
           pointsList[i].points,
-          pointsList[i+1].points,
+          pointsList[i + 1].points,
           pointsList[i].paint,
         );
-      }
-      else if(pointsList[i] != null && pointsList[i+1] == null) {
+      } else if (pointsList[i] != null && pointsList[i + 1] == null) {
         offsetPoints.clear();
         offsetPoints.add(
           pointsList[i].points,
         );
         offsetPoints.add(
           Offset(
-            pointsList[i].points.dx+0.1,
+            pointsList[i].points.dx + 0.1,
             pointsList[i].points.dy + 0.1,
           ),
         );

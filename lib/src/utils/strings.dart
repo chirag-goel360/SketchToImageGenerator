@@ -47,6 +47,9 @@ class Strings {
   static const String ROUTES = 'ROUTES';
    static const String NO_OPTIONS = 'NO_OPTIONS';
   static const String SKETCH_TO_IMAGE = "SKETCH_TO_IMAGE";
+  static const String SHOE_TO_IMAGE = "SHOE_TO_IMAGE";
+  static const String BAG_TO_IMAGE = "BAG_TO_IMAGE";
   static const String SKETCH_BOARD = "SKETCH_BOARD";
   static const String OUTPUT_BOARD = "OUTPUT_BOARD";
+  static const String MENU = "MENU";
 }
