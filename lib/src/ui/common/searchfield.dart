@@ -15,7 +15,7 @@ import 'package:humangenerator/src/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ShipsySearchSelect extends StatefulWidget {
+class ProjectSearchSelect extends StatefulWidget {
   final String placeholder;
   final bool autoFocus;
   final int maxLength;
@@ -36,7 +36,7 @@ class ShipsySearchSelect extends StatefulWidget {
       KeyValueDisableWithExtraDetails option, bool selected) buildDropdownItem;
   final bool clearAllowed;
 
-  const ShipsySearchSelect(
+  const ProjectSearchSelect(
       {Key key,
       @required this.placeholder,
       @required this.handleSelect,
@@ -58,10 +58,10 @@ class ShipsySearchSelect extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ShipsySearchSelectState createState() => _ShipsySearchSelectState();
+  _ProjectSearchSelectState createState() => _ProjectSearchSelectState();
 }
 
-class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
+class _ProjectSearchSelectState extends State<ProjectSearchSelect> {
   List<KeyValueDisableWithExtraDetails> _dropdownOptions = [];
   bool loading = false;
 
@@ -157,7 +157,7 @@ class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
   }
 
   @override
-  void didUpdateWidget(ShipsySearchSelect oldWidget) {
+  void didUpdateWidget(ProjectSearchSelect oldWidget) {
     if (oldWidget.selectedValue?.key != widget.selectedValue?.key) {
       _focusNode.unfocus();
       if (widget.selectedValue == null)
@@ -221,7 +221,7 @@ class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
           Icon(
             Icons.inbox,
             size: 28.0,
-            color: ShipsyColors.DISABLED_DARK,
+            color: ProjectColors.DISABLED_DARK,
           ),
           SizedBox(
             height: 5.0,
@@ -230,7 +230,7 @@ class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
             AppLocalization.of(context).translate(Strings.NO_OPTIONS),
             textAlign: TextAlign.center,
             style: textStyle.copyWith(
-              color: ShipsyColors.DISABLED_DARK,
+              color: ProjectColors.DISABLED_DARK,
             ),
           ),
         ],
@@ -238,7 +238,7 @@ class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
     } else {
       return ListView.builder(
         controller: scrollController,
-        padding: ShipsyEdgeInsets.ALL_0,
+        padding: ProjectEdgeInsets.ALL_0,
         itemCount: _dropdownOptions.length,
         itemBuilder: (BuildContext context, int index) {
           return SearchMenuItem(
@@ -264,18 +264,18 @@ class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
     EdgeInsets margin = widget.label == null && widget.errorMessage == null
         ? widget.margin
         : EdgeInsets.zero;
-    Widget child = ShipsyNeumorphic(
+    Widget child = ProjectNeumorphic(
       margin: EdgeInsets.only(left: margin.left, right: margin.right),
-      padding: ShipsyEdgeInsets.TOP_0.add(ShipsyEdgeInsets.BOTTOM_10),
-      style: ShipsyNeumorphicStyle(
+      padding: ProjectEdgeInsets.TOP_0.add(ProjectEdgeInsets.BOTTOM_10),
+      style: ProjectNeumorphicStyle(
         boxShape: BOX_SHAPE.ROUND_RECT,
-        borderRadius: BorderRadius.all(ShipsyBorderRadius.CIRCULAR_12),
-        depth: ShipsyNeumorphicTheme.EMBOSS_DEPTH_5,
-        intensity: ShipsyNeumorphicTheme.INTENSITY_0P85,
+        borderRadius: BorderRadius.all(ProjectBorderRadius.CIRCULAR_12),
+        depth: ProjectNeumorphicTheme.EMBOSS_DEPTH_5,
+        intensity: ProjectNeumorphicTheme.INTENSITY_0P85,
         lightSource: LIGHT_SOURCE.TOP_LEFT,
-        color: ShipsyColors.DEFAULT,
-        shadowLightColorEmboss: ShipsyNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
-        shadowDarkColorEmboss: ShipsyNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
+        color: ProjectColors.DEFAULT,
+        shadowLightColorEmboss: ProjectNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
+        shadowDarkColorEmboss: ProjectNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
       ),
       child: Container(
         height: 120.0,
@@ -292,7 +292,7 @@ class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
           ),
         ),
         _dropdownOptions.length > 2 && !loading
-            ? ShipsyDraggableScrollbar(
+            ? ProjectDraggableScrollbar(
                 heightScrollThumb: (_dropdownOptions.length < 20
                     ? (120.0 / _dropdownOptions.length).floor() + 5.0
                     : 25.0),
@@ -308,7 +308,7 @@ class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
   Widget build(BuildContext context) {
     final dropdown = CompositedTransformTarget(
       link: this._layerLink,
-      child: ShipsyTextField(
+      child: ProjectTextField(
         margin: widget.label == null && widget.errorMessage == null
             ? widget.margin
             : EdgeInsets.zero,
@@ -322,7 +322,7 @@ class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
         prefixIcon: Icon(
           Icons.search,
           size: 22.0,
-          color: ShipsyColors.PRIMARY_DARK,
+          color: ProjectColors.PRIMARY_DARK,
         ),
         maxLength: widget.maxLength,
         enabled: widget.enabled,
@@ -335,11 +335,11 @@ class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
     if (widget.label != null) {
       finalWidget.add(
         Padding(
-          padding: ShipsyEdgeInsets.LEFT_15.add(ShipsyEdgeInsets.BOTTOM_15),
+          padding: ProjectEdgeInsets.LEFT_15.add(ProjectEdgeInsets.BOTTOM_15),
           child: Text(
             widget.label,
             style: Theme.of(context).textTheme.bodyText1.copyWith(
-                  color: ShipsyColors.SECONDARY_DARK,
+                  color: ProjectColors.SECONDARY_DARK,
                 ),
           ),
         ),
@@ -350,11 +350,11 @@ class _ShipsySearchSelectState extends State<ShipsySearchSelect> {
 
     if (widget.errorMessage != null) {
       finalWidget.add(Padding(
-        padding: ShipsyEdgeInsets.LEFT_15.add(ShipsyEdgeInsets.TOP_10),
+        padding: ProjectEdgeInsets.LEFT_15.add(ProjectEdgeInsets.TOP_10),
         child: Text(
           widget.errorMessage,
           style: Theme.of(context).textTheme.overline.copyWith(
-                color: ShipsyColors.ERROR_DARK,
+                color: ProjectColors.ERROR_DARK,
               ),
         ),
       ));
@@ -407,8 +407,8 @@ class SearchMenuItem extends StatelessWidget {
         behavior: HitTestBehavior.translucent,
         onTap: this.onPressed,
         child: Container(
-          padding: ShipsyEdgeInsets.HORIZONTAL_20.add(ShipsyEdgeInsets.TOP_15),
-          color: this.selected ? ShipsyColors.PRIMARY_LIGHT : null,
+          padding: ProjectEdgeInsets.HORIZONTAL_20.add(ProjectEdgeInsets.TOP_15),
+          color: this.selected ? ProjectColors.PRIMARY_LIGHT : null,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -418,8 +418,8 @@ class SearchMenuItem extends StatelessWidget {
                       this.data.value,
                       style: Theme.of(context).textTheme.overline.copyWith(
                             color: this.selected
-                                ? ShipsyColors.DEFAULT
-                                : ShipsyColors.PRIMARY_DARK,
+                                ? ProjectColors.DEFAULT
+                                : ProjectColors.PRIMARY_DARK,
                           ),
                     ),
               SizedBox(

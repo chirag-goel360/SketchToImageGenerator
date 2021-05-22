@@ -1,8 +1,10 @@
 import 'dart:ui';
 
-class ShipsyColors {
+import 'package:flutter/material.dart';
+
+class ProjectColors {
   // will not be instantiated
-  const ShipsyColors._();
+  const ProjectColors._();
 
   // Primary
   static const Color DEFAULT = Color.fromRGBO(236, 240, 243, 1);
@@ -32,4 +34,10 @@ class ShipsyColors {
 
   // Other
   static const Color DARK_GREY = Color.fromRGBO(68, 68, 68, 1);
+
+  static Color greyshade100 = Colors.grey.shade100;
+  static const Color white = Colors.white;
+  static Color black = Colors.black.withOpacity(0.07);
+  static Color greyshade600 = Colors.grey.shade600;
+
 }

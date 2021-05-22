@@ -22,7 +22,7 @@ import 'package:humangenerator/src/ui/common/neumorphic/neumorphic_button.dart';
 ///
 /// usage:
 /// ```
-///                 ShipsyDropdown(
+///                 ProjectDropdown(
 ///                  options: [
 ///                    KeyValueWithExtraDetails('1', 'Value 1'),
 ///                    KeyValueWithExtraDetails('2', 'Value 2'),
@@ -54,16 +54,16 @@ enum _COLOR_KEYS {
 
 Map<DROPDOWN_TYPE, Map<_COLOR_KEYS, Color>> _colorsMap = {
   DROPDOWN_TYPE.DARK: {
-    _COLOR_KEYS.TEXT: ShipsyColors.DEFAULT,
-    _COLOR_KEYS.BG: ShipsyColors.PRIMARY_DARK,
-    _COLOR_KEYS.SHADOW_LIGHT: ShipsyNeumorphicTheme.LIGHT_SHADOW_DARK_THEME,
-    _COLOR_KEYS.SHADOW_DARK: ShipsyNeumorphicTheme.DARK_SHADOW_DARK_THEME,
+    _COLOR_KEYS.TEXT: ProjectColors.DEFAULT,
+    _COLOR_KEYS.BG: ProjectColors.PRIMARY_DARK,
+    _COLOR_KEYS.SHADOW_LIGHT: ProjectNeumorphicTheme.LIGHT_SHADOW_DARK_THEME,
+    _COLOR_KEYS.SHADOW_DARK: ProjectNeumorphicTheme.DARK_SHADOW_DARK_THEME,
   },
   DROPDOWN_TYPE.LIGHT: {
-    _COLOR_KEYS.TEXT: ShipsyColors.PRIMARY_DARK,
-    _COLOR_KEYS.BG: ShipsyColors.DEFAULT,
-    _COLOR_KEYS.SHADOW_LIGHT: ShipsyNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
-    _COLOR_KEYS.SHADOW_DARK: ShipsyNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
+    _COLOR_KEYS.TEXT: ProjectColors.PRIMARY_DARK,
+    _COLOR_KEYS.BG: ProjectColors.DEFAULT,
+    _COLOR_KEYS.SHADOW_LIGHT: ProjectNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
+    _COLOR_KEYS.SHADOW_DARK: ProjectNeumorphicTheme.DARK_SHADOW_LIGHT_THEME,
   },
 };
 
@@ -72,7 +72,7 @@ enum DROPDOWN_DIRECTION {
   DOWN,
 }
 
-class ShipsyDropdown extends StatefulWidget {
+class ProjectDropdown extends StatefulWidget {
   final List<KeyValueDisableWithExtraDetails> options;
   final KeyValueDisableWithExtraDetails selectedValue;
   final String label;
@@ -91,7 +91,7 @@ class ShipsyDropdown extends StatefulWidget {
   final bool arrowVisible;
   final DROPDOWN_DIRECTION direction;
 
-  const ShipsyDropdown({
+  const ProjectDropdown({
     Key key,
     @required this.options,
     @required this.selectedValue,
@@ -108,10 +108,10 @@ class ShipsyDropdown extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ShipsyDropdownState createState() => _ShipsyDropdownState();
+  _ProjectDropdownState createState() => _ProjectDropdownState();
 }
 
-class _ShipsyDropdownState extends State<ShipsyDropdown> {
+class _ProjectDropdownState extends State<ProjectDropdown> {
   /// states for overlay
   OverlayEntry _overlayEntry;
   OverlayEntry _overlayBackdropEntry;
@@ -172,10 +172,10 @@ class _ShipsyDropdownState extends State<ShipsyDropdown> {
   Widget _renderListChildren() {
     return ListView.builder(
       controller: scrollController,
-      padding: ShipsyEdgeInsets.ALL_0,
+      padding: ProjectEdgeInsets.ALL_0,
       itemCount: widget.options.length,
       itemBuilder: (BuildContext context, int index) {
-        return _ShipsyDropDownMenuItem(
+        return _ProjectDropDownMenuItem(
           onPressed: () {
             _toggleVisibility();
             if (widget.onSelect != null) {
@@ -195,14 +195,14 @@ class _ShipsyDropdownState extends State<ShipsyDropdown> {
 
   Widget _renderList() {
     double paddingHeight = 5.0;
-    Widget child = ShipsyNeumorphic(
-      padding: ShipsyEdgeInsets.BOTTOM_10,
-      style: ShipsyNeumorphicStyle(
+    Widget child = ProjectNeumorphic(
+      padding: ProjectEdgeInsets.BOTTOM_10,
+      style: ProjectNeumorphicStyle(
         boxShape: BOX_SHAPE.ROUND_RECT,
-        borderRadius: BorderRadius.all(ShipsyBorderRadius.CIRCULAR_12),
+        borderRadius: BorderRadius.all(ProjectBorderRadius.CIRCULAR_12),
         shape: NEUMORPHIC_SHAPE.FLAT,
-        depth: ShipsyNeumorphicTheme.DEPTH_3,
-        intensity: ShipsyNeumorphicTheme.INTENSITY_0P85,
+        depth: ProjectNeumorphicTheme.DEPTH_3,
+        intensity: ProjectNeumorphicTheme.INTENSITY_0P85,
         lightSource: LIGHT_SOURCE.TOP_LEFT,
         color: _colorsMap[widget.type][_COLOR_KEYS.BG],
         shadowLightColor: _colorsMap[widget.type][_COLOR_KEYS.SHADOW_LIGHT],
@@ -223,7 +223,7 @@ class _ShipsyDropdownState extends State<ShipsyDropdown> {
           ),
         ),
         widget.options.length > 2
-            ? ShipsyDraggableScrollbar(
+            ? ProjectDraggableScrollbar(
                 type: widget.type == DROPDOWN_TYPE.LIGHT
                     ? SCROLL_BAR_TYPE.LIGHT
                     : SCROLL_BAR_TYPE.DARK,
@@ -249,23 +249,23 @@ class _ShipsyDropdownState extends State<ShipsyDropdown> {
   Widget build(BuildContext context) {
     Widget dropdown = CompositedTransformTarget(
       link: _layerLink,
-      child: ShipsyNeumorphicButton(
+      child: ProjectNeumorphicButton(
         margin: widget.label == null && widget.errorMessage == null
             ? widget.margin
             : EdgeInsets.zero,
         key: _dropdownKey,
         padding:
-            ShipsyEdgeInsets.HORIZONTAL_15.add(ShipsyEdgeInsets.VERTICAL_10),
+            ProjectEdgeInsets.HORIZONTAL_15.add(ProjectEdgeInsets.VERTICAL_10),
         onClick: widget.disabled ? null : _toggleVisibility,
-        style: ShipsyNeumorphicStyle(
+        style: ProjectNeumorphicStyle(
           boxShape: BOX_SHAPE.ROUND_RECT,
-          borderRadius: BorderRadius.all(ShipsyBorderRadius.CIRCULAR_12),
+          borderRadius: BorderRadius.all(ProjectBorderRadius.CIRCULAR_12),
           shape: NEUMORPHIC_SHAPE.FLAT,
-          depth: ShipsyNeumorphicTheme.DEPTH_3,
-          intensity: ShipsyNeumorphicTheme.INTENSITY_0P85,
+          depth: ProjectNeumorphicTheme.DEPTH_3,
+          intensity: ProjectNeumorphicTheme.INTENSITY_0P85,
           lightSource: LIGHT_SOURCE.TOP_LEFT,
           color: widget.disabled
-              ? ShipsyColors.DISABLED_LIGHT
+              ? ProjectColors.DISABLED_LIGHT
               : _colorsMap[widget.type][_COLOR_KEYS.BG],
           shadowLightColor: _colorsMap[widget.type][_COLOR_KEYS.SHADOW_LIGHT],
           shadowDarkColor: _colorsMap[widget.type][_COLOR_KEYS.SHADOW_DARK],
@@ -282,7 +282,7 @@ class _ShipsyDropdownState extends State<ShipsyDropdown> {
                       .translate(widget.selectedValue.value),
               style: Theme.of(context).textTheme.bodyText2.copyWith(
                     color: widget.disabled
-                        ? ShipsyColors.DISABLED_DARK
+                        ? ProjectColors.DISABLED_DARK
                         : _colorsMap[widget.type][_COLOR_KEYS.TEXT],
                   ),
             ),
@@ -293,7 +293,7 @@ class _ShipsyDropdownState extends State<ShipsyDropdown> {
                         : Icons.keyboard_arrow_down,
                     size: 24.0,
                     color: widget.disabled
-                        ? ShipsyColors.DISABLED_DARK
+                        ? ProjectColors.DISABLED_DARK
                         : _colorsMap[widget.type][_COLOR_KEYS.TEXT],
                   )
                 : Container(),
@@ -307,11 +307,11 @@ class _ShipsyDropdownState extends State<ShipsyDropdown> {
     if (widget.label != null) {
       finalWidget.add(
         Padding(
-          padding: ShipsyEdgeInsets.LEFT_15.add(ShipsyEdgeInsets.BOTTOM_15),
+          padding: ProjectEdgeInsets.LEFT_15.add(ProjectEdgeInsets.BOTTOM_15),
           child: Text(
             widget.label,
             style: Theme.of(context).textTheme.bodyText1.copyWith(
-                  color: ShipsyColors.SECONDARY_DARK,
+                  color: ProjectColors.SECONDARY_DARK,
                 ),
           ),
         ),
@@ -322,11 +322,11 @@ class _ShipsyDropdownState extends State<ShipsyDropdown> {
 
     if (widget.errorMessage != null) {
       finalWidget.add(Padding(
-        padding: ShipsyEdgeInsets.LEFT_15.add(ShipsyEdgeInsets.TOP_10),
+        padding: ProjectEdgeInsets.LEFT_15.add(ProjectEdgeInsets.TOP_10),
         child: Text(
           widget.errorMessage,
           style: Theme.of(context).textTheme.overline.copyWith(
-                color: ShipsyColors.ERROR_DARK,
+                color: ProjectColors.ERROR_DARK,
               ),
         ),
       ));
@@ -344,7 +344,7 @@ class _ShipsyDropdownState extends State<ShipsyDropdown> {
   }
 }
 
-class _ShipsyDropDownMenuItem extends StatelessWidget {
+class _ProjectDropDownMenuItem extends StatelessWidget {
   final bool selected;
   final KeyValueDisableWithExtraDetails data;
   final Function onPressed;
@@ -356,7 +356,7 @@ class _ShipsyDropDownMenuItem extends StatelessWidget {
       bool selected) buildDropdownItem;
   final DROPDOWN_TYPE type;
 
-  const _ShipsyDropDownMenuItem({
+  const _ProjectDropDownMenuItem({
     Key key,
     @required this.selected,
     @required this.data,
@@ -377,9 +377,9 @@ class _ShipsyDropDownMenuItem extends StatelessWidget {
                 AppLocalization.of(context).translate(data.value?.toString()),
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
                       color: disabled
-                          ? ShipsyColors.DISABLED_DARK
+                          ? ProjectColors.DISABLED_DARK
                           : (selected
-                              ? ShipsyColors.DEFAULT
+                              ? ProjectColors.DEFAULT
                               : _colorsMap[type][_COLOR_KEYS.TEXT]),
                     ),
               ),
@@ -395,13 +395,13 @@ class _ShipsyDropDownMenuItem extends StatelessWidget {
         behavior: HitTestBehavior.translucent,
         onTap: disabled ? null : onPressed,
         child: selected
-            ? ShipsyNeumorphic(
+            ? ProjectNeumorphic(
                 padding:
-                    ShipsyEdgeInsets.HORIZONTAL_20.add(ShipsyEdgeInsets.TOP_15),
-                style: ShipsyNeumorphicStyle(
-                  depth: ShipsyNeumorphicTheme.EMBOSS_DEPTH_3,
-                  intensity: ShipsyNeumorphicTheme.INTENSITY_0P85,
-                  color: ShipsyColors.PRIMARY_LIGHT,
+                    ProjectEdgeInsets.HORIZONTAL_20.add(ProjectEdgeInsets.TOP_15),
+                style: ProjectNeumorphicStyle(
+                  depth: ProjectNeumorphicTheme.EMBOSS_DEPTH_3,
+                  intensity: ProjectNeumorphicTheme.INTENSITY_0P85,
+                  color: ProjectColors.PRIMARY_LIGHT,
                   shadowLightColorEmboss: Colors.transparent,
                   shadowDarkColorEmboss: _colorsMap[type]
                       [_COLOR_KEYS.SHADOW_DARK],
@@ -410,7 +410,7 @@ class _ShipsyDropDownMenuItem extends StatelessWidget {
               )
             : Container(
                 padding:
-                    ShipsyEdgeInsets.HORIZONTAL_20.add(ShipsyEdgeInsets.TOP_15),
+                    ProjectEdgeInsets.HORIZONTAL_20.add(ProjectEdgeInsets.TOP_15),
                 child: tab,
               ),
       ),

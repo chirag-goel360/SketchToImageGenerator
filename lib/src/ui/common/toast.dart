@@ -9,8 +9,8 @@ enum TOAST_TYPE {
 }
 
 Map<TOAST_TYPE, Color> _bgColorMap = {
-  TOAST_TYPE.SUCCESS: ShipsyColors.SUCCESS_DARK,
-  TOAST_TYPE.ERROR: ShipsyColors.ERROR_DARK,
+  TOAST_TYPE.SUCCESS: ProjectColors.SUCCESS_DARK,
+  TOAST_TYPE.ERROR: ProjectColors.ERROR_DARK,
 };
 
 Map<TOAST_TYPE, IconData> _iconMap = {
@@ -18,7 +18,7 @@ Map<TOAST_TYPE, IconData> _iconMap = {
   TOAST_TYPE.ERROR: Icons.error,
 };
 
-void showShipsyToast(
+void showProjectToast(
   BuildContext context, {
   String messageCode,
   TOAST_TYPE type: TOAST_TYPE.SUCCESS,
@@ -34,12 +34,12 @@ void showShipsyToast(
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: 2),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(ShipsyBorderRadius.CIRCULAR_12)),
+          borderRadius: BorderRadius.all(ProjectBorderRadius.CIRCULAR_12)),
       content: Row(
         children: <Widget>[
           Icon(
             _iconMap[type],
-            color: ShipsyColors.DEFAULT,
+            color: ProjectColors.DEFAULT,
             size: 18,
           ),
           SizedBox(
@@ -49,7 +49,7 @@ void showShipsyToast(
             child: Text(
               AppLocalization.of(context).translate(messageCode),
               style: Theme.of(context).textTheme.bodyText2.copyWith(
-                    color: ShipsyColors.DEFAULT,
+                    color: ProjectColors.DEFAULT,
                   ),
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class ShipsyEdgeInsets {
-  const ShipsyEdgeInsets._();
+class ProjectEdgeInsets {
+  const ProjectEdgeInsets._();
 
   // Left
   static const LEFT_3 = const EdgeInsets.only(left: 3);

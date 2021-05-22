@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-class ShipsyNeumorphicTheme {
-  const ShipsyNeumorphicTheme._();
+class ProjectNeumorphicTheme {
+  const ProjectNeumorphicTheme._();
 
   // Emboss Depth
   static const double EMBOSS_DEPTH_3 = -3;

@@ -3,10 +3,9 @@ import 'package:humangenerator/src/utils/border_radius.dart';
 import 'package:humangenerator/src/utils/colors.dart';
 import 'package:humangenerator/src/utils/edge_insets.dart';
 import 'package:humangenerator/src/utils/neumorphic_theme.dart';
-import 'package:humangenerator/src/utils/sized_boxes.dart';
 import 'package:flutter/material.dart';
 
-class ShipsyCard extends StatefulWidget {
+class ProjectCard extends StatefulWidget {
   final Widget body;
   final Widget headingSuffix;
   final Widget tray;
@@ -15,7 +14,7 @@ class ShipsyCard extends StatefulWidget {
   final num bodyHeight;
   final String heading;
 
-  const ShipsyCard({
+  const ProjectCard({
     this.body,
     this.bodyHeight,
     this.tray,
@@ -27,24 +26,24 @@ class ShipsyCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ShipsyCardState createState() => _ShipsyCardState();
+  _ProjectCardState createState() => _ProjectCardState();
 }
 
-class _ShipsyCardState extends State<ShipsyCard> {
+class _ProjectCardState extends State<ProjectCard> {
   @override
   Widget build(BuildContext context) {
-    return ShipsyNeumorphic(
+    return ProjectNeumorphic(
       margin: widget.margin,
-      padding: widget.padding != null ? widget.padding : ShipsyEdgeInsets.ALL_0,
-      style: ShipsyNeumorphicStyle(
+      padding: widget.padding != null ? widget.padding : ProjectEdgeInsets.ALL_0,
+      style: ProjectNeumorphicStyle(
         boxShape: BOX_SHAPE.ROUND_RECT,
-        borderRadius: BorderRadius.all(ShipsyBorderRadius.CIRCULAR_12),
+        borderRadius: BorderRadius.all(ProjectBorderRadius.CIRCULAR_12),
         shape: NEUMORPHIC_SHAPE.FLAT,
-        intensity: ShipsyNeumorphicTheme.INTENSITY_0P95,
-        depth: ShipsyNeumorphicTheme.DEPTH_3,
-        shadowLightColor: ShipsyNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
-        shadowDarkColor: ShipsyNeumorphicTheme.DARK_SHADOW_DARK_THEME,
-        color: ShipsyColors.DEFAULT,
+        intensity: ProjectNeumorphicTheme.INTENSITY_0P95,
+        depth: ProjectNeumorphicTheme.DEPTH_3,
+        shadowLightColor: ProjectNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME,
+        shadowDarkColor: ProjectNeumorphicTheme.DARK_SHADOW_DARK_THEME,
+        color: ProjectColors.DEFAULT,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -52,10 +51,10 @@ class _ShipsyCardState extends State<ShipsyCard> {
         children: [
           if (widget.heading != null)
             Container(
-              padding: ShipsyEdgeInsets.HORIZONTAL_25
-                  .add(ShipsyEdgeInsets.LEFT_10)
-                  .add(ShipsyEdgeInsets.VERTICAL_15),
-              color: ShipsyColors.SECONDARY_LIGHT,
+              padding: ProjectEdgeInsets.HORIZONTAL_25
+                  .add(ProjectEdgeInsets.LEFT_10)
+                  .add(ProjectEdgeInsets.VERTICAL_15),
+              color: ProjectColors.SECONDARY_LIGHT,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -64,7 +63,7 @@ class _ShipsyCardState extends State<ShipsyCard> {
                     style: Theme.of(context)
                         .textTheme
                         .subtitle1
-                        .copyWith(color: ShipsyColors.PRIMARY_DARK),
+                        .copyWith(color: ProjectColors.PRIMARY_DARK),
                   ),
                   if (widget.headingSuffix != null) widget.headingSuffix,
                 ],
@@ -76,7 +75,7 @@ class _ShipsyCardState extends State<ShipsyCard> {
                   child: widget.body,
                 )
               : widget.body,
-          // ShipsySizedBoxes.HEIGHT_10,
+          // ProjectSizedBoxes.HEIGHT_10,
           if (widget.tray != null) widget.tray,
         ],
       ),

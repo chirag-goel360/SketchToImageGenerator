@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ShipsySizedBoxes {
-  const ShipsySizedBoxes._();
+class ProjectSizedBoxes {
+  const ProjectSizedBoxes._();
 
   // ---------------- HEIGHT ----------------
 

@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class ShipsySafeArea extends StatelessWidget {
-  const ShipsySafeArea({
+class ProjectSafeArea extends StatelessWidget {
+  const ProjectSafeArea({
     Key key,
     @required this.child,
   }) : super(key: key);

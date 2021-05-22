@@ -24,7 +24,7 @@ class Strings {
   static const String RATE_REVIEW_SUBHEADING_IOS = 'RATE_REVIEW_SUBHEADING_IOS';
   static const String YES_RATE_US_NOW = 'YES_RATE_US_NOW';
   static const String MAYBE_LATER = 'MAYBE_LATER';
-  static const String UPDATE_SHIPSY = 'UPDATE_SHIPSY';
+  static const String UPDATE_PROJECT = 'UPDATE_PROJECT';
   static const String SOFT_UPGRADE_SUBHEADING = 'SOFT_UPGRADE_SUBHEADING';
   static const String FORCE_UPGRADE_SUBHEADING = 'FORCE_UPGRADE_SUBHEADING';
   static const String UPDATE = 'UPDATE';
@@ -37,8 +37,8 @@ class Strings {
   static const String A_WEEK_LEFT = 'A_WEEK_LEFT';
   static const String WEEKS_LEFT = 'WEEKS_LEFT';
   static const String HRS_LEFT = 'HRS_LEFT';
-  static const String DUPLICATE_ALLOW_SHIPSY_PANEL =
-      'DUPLICATE_ALLOW_SHIPSY_PANEL';
+  static const String DUPLICATE_ALLOW_PROJECT_PANEL =
+      'DUPLICATE_ALLOW_PROJECT_PANEL';
   static const String UPLOAD = 'UPLOAD';
   static const String FILE_IS_REQUIRED = 'FILE_IS_REQUIRED';
   static const String UPLOAD_IN_PROGRESS = 'UPLOAD_IN_PROGRESS';
@@ -47,6 +47,9 @@ class Strings {
   static const String ROUTES = 'ROUTES';
    static const String NO_OPTIONS = 'NO_OPTIONS';
   static const String SKETCH_TO_IMAGE = "SKETCH_TO_IMAGE";
+  static const String SHOE_TO_IMAGE = "SHOE_TO_IMAGE";
+  static const String BAG_TO_IMAGE = "BAG_TO_IMAGE";
   static const String SKETCH_BOARD = "SKETCH_BOARD";
   static const String OUTPUT_BOARD = "OUTPUT_BOARD";
+  static const String MENU = "MENU";
 }

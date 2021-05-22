@@ -9,15 +9,15 @@ import 'package:humangenerator/src/ui/common/neumorphic/neumorphic.dart';
 
 OverlayEntry _overlayEntry;
 
-void removeShipsyLoadingScreen(BuildContext context) {
+void removeProjectLoadingScreen(BuildContext context) {
   if (_overlayEntry != null) {
     _overlayEntry.remove();
     _overlayEntry = null;
   }
 }
 
-void showShipsyLoadingScreen(BuildContext context, String messageCode) {
-  removeShipsyLoadingScreen(context);
+void showProjectLoadingScreen(BuildContext context, String messageCode) {
+  removeProjectLoadingScreen(context);
   _overlayEntry = _createOverlayEntry(messageCode);
   Overlay.of(context).insert(_overlayEntry);
 }
@@ -33,19 +33,19 @@ OverlayEntry _createOverlayEntry(String messageCode) {
         color: Colors.black12.withOpacity(0.3),
         child: Center(
           child: FittedBox(
-            child: ShipsyNeumorphic(
-              padding: ShipsyEdgeInsets.ALL_20,
-              style: ShipsyNeumorphicStyle(
+            child: ProjectNeumorphic(
+              padding: ProjectEdgeInsets.ALL_20,
+              style: ProjectNeumorphicStyle(
                 boxShape: BOX_SHAPE.ROUND_RECT,
-                borderRadius: BorderRadius.all(ShipsyBorderRadius.CIRCULAR_16),
-                color: ShipsyColors.DEFAULT,
+                borderRadius: BorderRadius.all(ProjectBorderRadius.CIRCULAR_16),
+                color: ProjectColors.DEFAULT,
                 shape: NEUMORPHIC_SHAPE.FLAT,
-                intensity: ShipsyNeumorphicTheme.INTENSITY_0P95,
-                depth: ShipsyNeumorphicTheme.DEPTH_5,
+                intensity: ProjectNeumorphicTheme.INTENSITY_0P95,
+                depth: ProjectNeumorphicTheme.DEPTH_5,
                 lightSource: LIGHT_SOURCE.TOP_LEFT,
-                shadowLightColor: ShipsyNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME
+                shadowLightColor: ProjectNeumorphicTheme.LIGHT_SHADOW_LIGHT_THEME
                     .withOpacity(0.5),
-                shadowDarkColor: ShipsyNeumorphicTheme.DARK_SHADOW_DARK_THEME,
+                shadowDarkColor: ProjectNeumorphicTheme.DARK_SHADOW_DARK_THEME,
               ),
               child: Row(
                 children: <Widget>[
