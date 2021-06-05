@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:humangenerator/drawboard/main_drawboard.dart';
-import 'package:humangenerator/snappy/main_snappy.dart';
 import 'package:humangenerator/src/ui/screens/face_conversion/sketch_to_image_screen.dart';
 import 'package:humangenerator/src/ui/screens/hand_bag_conversion/bag_conversion.dart';
 import 'package:humangenerator/src/ui/screens/shoe_conversion/shoe_to_image.dart';
@@ -18,9 +17,6 @@ class ProjectRouter {
         break;
       case Routes.SKETCHTOFACE:
         builder = (context) => SketchToFaceScreen();
-        break;
-      case Routes.MYSNAPPY:
-        builder = (context) => MyAppSnappy();
         break;
       case Routes.DRAWBOARD:
         builder = (context) => DrawingApp();
@@ -47,6 +43,5 @@ class Routes {
   static const String SKETCHTOFACE = '/sketchToFace';
   static const String SHOESKETCh = '/shoesketch';
   static const String HANDBAGSKETCH = '/bagsketch';
-  static const String MYSNAPPY = '/snappy';
   static const String DRAWBOARD = '/drawboard';
 }

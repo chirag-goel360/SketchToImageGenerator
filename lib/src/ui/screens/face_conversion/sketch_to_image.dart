@@ -377,14 +377,6 @@ class _HomeState extends State<Home> {
                                       onPressed: () => Navigator.of(context)
                                           .pushNamed(Routes.DRAWBOARD),
                                     ),
-                                    IconButton(
-                                      icon: Icon(
-                                        FontAwesomeIcons.snapchat,
-                                        color: Colors.redAccent,
-                                      ),
-                                      onPressed: () => Navigator.of(context)
-                                          .pushNamed(Routes.MYSNAPPY),
-                                    ),
                                   ],
                                 ),
                               ),
