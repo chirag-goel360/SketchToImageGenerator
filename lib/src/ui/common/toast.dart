@@ -23,12 +23,12 @@ void showProjectToast(
   String messageCode,
   TOAST_TYPE type: TOAST_TYPE.SUCCESS,
 }) {
-  Scaffold.of(context).hideCurrentSnackBar();
+  ScaffoldMessenger.of(context).hideCurrentSnackBar();
   // if dialog and snackbar are opened at the same time, then its own dismiss will not work
   Future.delayed(Duration(seconds: 2), () {
-    Scaffold.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
   });
-  Scaffold.of(context).showSnackBar(
+  ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       elevation: 5,
       behavior: SnackBarBehavior.floating,

@@ -7,7 +7,6 @@ import 'package:humangenerator/src/utils/colors.dart';
 import 'package:humangenerator/src/utils/edge_insets.dart';
 import 'package:humangenerator/src/utils/sized_boxes.dart';
 import 'package:humangenerator/src/utils/strings.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ProjectDrawer extends StatefulWidget {
   @override

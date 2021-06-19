@@ -56,7 +56,7 @@ class _HandBagConversionConsumerState extends State<HandBagConversionConsumer> {
     final img = await picture.toImage(256, 256);
     final pngBytes = await img.toByteData(format: ui.ImageByteFormat.png);
     final listBytes = Uint8List.view(pngBytes.buffer);
-    File file = await writeBytes(listBytes);
+    //File file = await writeBytes(listBytes);
     String base64 = base64Encode(listBytes);
     fetchResponse(base64);
   }
@@ -146,7 +146,7 @@ class _HandBagConversionConsumerState extends State<HandBagConversionConsumer> {
   @override
   Widget build(BuildContext context) {
     final _translate = AppLocalization.of(context).translate;
-    final _textTheme = Theme.of(context).textTheme;
+    //final _textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
 
     Widget _buildMobileUI() {

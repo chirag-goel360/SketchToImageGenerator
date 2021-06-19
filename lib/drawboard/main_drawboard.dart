@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-import 'dart:io';
 import 'dart:ui';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:humangenerator/src/routes.dart';
@@ -211,12 +209,12 @@ class _DrawWorkerState extends State<DrawWorker> {
 
   Future<void> sharecode() async {
     try {
-      RenderRepaintBoundary boundary =
-          globalKey.currentContext.findRenderObject();
-      var item = await boundary.toImage();
-      ByteData byteData = await item.toByteData(
-        format: ImageByteFormat.png,
-      );
+      // RenderRepaintBoundary boundary =
+      //     globalKey.currentContext.findRenderObject();
+      //var item = await boundary.toImage();
+      // ByteData byteData = await item.toByteData(
+      //   format: ImageByteFormat.png,
+      // );
       // await Share.file(
       //   'esys image',
       //   'qrcode.png',
@@ -316,7 +314,7 @@ class _DrawWorkerState extends State<DrawWorker> {
 class DrawingCreater extends CustomPainter {
   DrawingCreater({this.pointsList});
   List<DrawingPoints> pointsList;
-  List<Offset> offsetPoints = List();
+  List<Offset> offsetPoints = [];
 
   @override
   void paint(Canvas canvas, Size size) {
