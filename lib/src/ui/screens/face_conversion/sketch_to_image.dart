@@ -20,6 +20,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -59,29 +60,38 @@ class _HomeState extends State<Home> {
     final img = await picture.toImage(256, 256);
     final pngBytes = await img.toByteData(format: ui.ImageByteFormat.png);
     final listBytes = Uint8List.view(pngBytes.buffer);
-    File file = await writeBytes(listBytes);
+
+    // File file = await writeBytes(listBytes);
     String base64 = base64Encode(listBytes);
     fetchResponse(base64);
   }
 
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
+  // Future<String> get _localPath async {
+  //   var directory;
 
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/test.png');
-  }
+  //   if (kIsWeb) {
+  //     // Set web-specific directory
 
-  Future<File> writeBytes(listBytes) async {
-    final file = await _localFile;
+      
+  //   } else {
+  //     directory = await getApplicationDocumentsDirectory();
+  //   }
+  //   return directory.path;
+  // }
 
-    return file.writeAsBytes(listBytes, flush: true);
-  }
+  // Future<File> get _localFile async {
+  //   final path = await _localPath;
+  //   return File('$path/test.png');
+  // }
+
+  // Future<File> writeBytes(listBytes) async {
+  //   final file = await _localFile;
+  //   return file.writeAsBytes(listBytes, flush: true);
+  // }
 
   void fetchResponse(var base64Image) async {
     // String base64 = base64Encode(base64Image);
+    print("Hello World");
     setState(() {
       loading = true;
     });
@@ -93,6 +103,7 @@ class _HomeState extends State<Home> {
       'Connection': 'Keep-Alive',
     };
     var body = json.encode(data);
+    
     try {
       var response =
           await http.post(Uri.parse(url), body: body, headers: headers);
@@ -377,14 +388,6 @@ class _HomeState extends State<Home> {
                                       onPressed: () => Navigator.of(context)
                                           .pushNamed(Routes.DRAWBOARD),
                                     ),
-                                    IconButton(
-                                      icon: Icon(
-                                        FontAwesomeIcons.snapchat,
-                                        color: Colors.redAccent,
-                                      ),
-                                      onPressed: () => Navigator.of(context)
-                                          .pushNamed(Routes.MYSNAPPY),
-                                    ),
                                   ],
                                 ),
                               ),
@@ -531,6 +534,7 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
+                  
                 ],
               ),
             ),

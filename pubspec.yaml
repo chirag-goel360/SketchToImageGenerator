@@ -16,26 +16,25 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cached_network_image: null
-  rxdart: null
-  hive: null
-  flame: ^0.29.4
+  connectivity: ^3.0.3
   cupertino_icons: ^1.0.2
   file_picker: null
+  flame: ^0.29.4
   flutter_neumorphic: ^3.1.0
+  font_awesome_flutter: null
+  hive: null
   http: null
   image_picker: ^0.7.4
+  mime: ^1.0.0
   path_provider: null
+  rxdart: null
   splashscreen: null
-  camera_deep_ar: ^0.0.1
   velocity_x: ^2.6.0
-  connectivity: ^3.0.3
-  font_awesome_flutter:
-  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_colorpicker:
+  flutter_colorpicker: null
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

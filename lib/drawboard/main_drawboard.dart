@@ -4,14 +4,15 @@ import 'package:flutter/services.dart';
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:humangenerator/src/routes.dart';
 import 'package:humangenerator/src/ui/common/safe_area.dart';
 
 class DrawingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DrawWorker(),
+    return Scaffold(
+      // debugShowCheckedModeBanner: false,
+      body: DrawWorker(),
     );
   }
 }
@@ -28,7 +29,8 @@ class _DrawWorkerState extends State<DrawWorker> {
   List<DrawingPoints> points = [];
   bool showBottomList = false;
   double opacity = 1.0;
-  StrokeCap strokeCap = (Platform.isAndroid) ? StrokeCap.butt : StrokeCap.round;
+  StrokeCap strokeCap = //(Platform.isAndroid) ? StrokeCap.butt :
+  StrokeCap.round;
   GlobalKey globalKey = new GlobalKey();
   SelectedMode selectedMode = SelectedMode.StrokeWidth;
   List<Color> colors = [
@@ -111,10 +113,12 @@ class _DrawWorkerState extends State<DrawWorker> {
                           }),
                       IconButton(
                         icon: Icon(
-                          Icons.save,
+                          Icons.arrow_back_ios_outlined,
                         ),
                         onPressed: () {
-                          sharecode();
+                          Navigator.pushNamedAndRemoveUntil(
+                context, Routes.SKETCHTOFACE, (route) => false);
+                         
                         },
                       ),
                     ],
