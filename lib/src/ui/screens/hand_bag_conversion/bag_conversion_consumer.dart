@@ -300,7 +300,7 @@ class _HandBagConversionConsumerState extends State<HandBagConversionConsumer> {
                 children: [
                   ProjectAppBar(
                       icon: 'assets/module_icons/sketchHuman.png',
-                      title: _translate(Strings.SKETCH_TO_IMAGE)),
+                      title:_translate(Strings.BAG_TO_IMAGE)),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

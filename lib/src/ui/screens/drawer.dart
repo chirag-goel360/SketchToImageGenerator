@@ -7,6 +7,7 @@ import 'package:humangenerator/src/utils/colors.dart';
 import 'package:humangenerator/src/utils/edge_insets.dart';
 import 'package:humangenerator/src/utils/sized_boxes.dart';
 import 'package:humangenerator/src/utils/strings.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ProjectDrawer extends StatefulWidget {
   @override
@@ -21,6 +22,7 @@ class _ProjectDrawerState extends State<ProjectDrawer> {
         onTap: () {
           if (ModalRoute.of(context).settings.name != routeName) {
             print(routeName);
+
             Navigator.pushNamedAndRemoveUntil(
                 context, routeName, (route) => false);
           }
@@ -132,6 +134,11 @@ class _ProjectDrawerState extends State<ProjectDrawer> {
                               .translate(Strings.BAG_TO_IMAGE),
                           Routes.HANDBAGSKETCH,
                         ),
+                        _buildMenuItem(
+                            Icons.edit,
+                            AppLocalization.of(context)
+                                .translate(Strings.SKETCH_BOARD),
+                            Routes.DRAWBOARD),
 
                         ProjectSizedBoxes.HEIGHT_20,
                         Divider(
