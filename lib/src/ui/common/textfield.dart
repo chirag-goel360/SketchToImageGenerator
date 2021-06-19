@@ -130,7 +130,7 @@ class ProjectTextField extends StatelessWidget {
         inputFormatters: this.inputFormatters,
         keyboardType: this.keyboardType,
         enableInteractiveSelection: this.enableInteractiveSelection,
-        maxLengthEnforced: true,
+        //maxLengthEnforcement: true,
         style: textStyle,
         decoration: InputDecoration(
           counterText: "",

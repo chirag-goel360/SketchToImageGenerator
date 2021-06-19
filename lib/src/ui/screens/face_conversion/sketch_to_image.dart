@@ -159,7 +159,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final _translate = AppLocalization.of(context).translate;
-    final _textTheme = Theme.of(context).textTheme;
+    //final _textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
 
     Widget _buildMobileUI() {
