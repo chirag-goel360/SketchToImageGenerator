@@ -17,7 +17,6 @@ import 'package:humangenerator/src/utils/edge_insets.dart';
 import 'package:humangenerator/src/utils/sized_boxes.dart';
 import 'package:humangenerator/src/utils/strings.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 
